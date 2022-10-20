@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/widgets/big_text.dart';
+import 'package:flutter_complete_guide/widgets/small_text.dart';
 
 import '../utils/colors.dart';
 
@@ -28,8 +29,11 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 children: [
                   Column(
                     children: [
-                     BigText(text: "Romania",),
-                    Text("City"),
+                     BigText(
+                      text: "Romania", 
+                      color: AppColors.mainColor,
+                      ),
+                      SmallText(text: "Cluj-Napoca", color: Colors.black54,),
                     ],
                   ),
                   Center(

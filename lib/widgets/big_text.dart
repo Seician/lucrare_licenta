@@ -21,6 +21,7 @@ class BigText extends StatelessWidget {
     return Text(
       // our variables
       text,
+      maxLines: 1,
       overflow: overflow,
       style: TextStyle(
         fontFamily: 'OpenSans-Regular',
