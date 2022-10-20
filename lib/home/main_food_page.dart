@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/home/food_page_body.dart';
 import 'package:flutter_complete_guide/widgets/big_text.dart';
 import 'package:flutter_complete_guide/widgets/small_text.dart';
 
@@ -33,7 +34,13 @@ class _MainFoodPageState extends State<MainFoodPage> {
                       text: "Romania", 
                       color: AppColors.mainColor,
                       ),
-                      SmallText(text: "Cluj-Napoca", color: Colors.black54,),
+
+                      Row(
+                        children: [
+                          SmallText(text: "Cluj-Napoca", color: Colors.black54,),
+                          const Icon(Icons.arrow_drop_down_rounded)
+                        ],
+                      ),
                     ],
                   ),
                   Center(
@@ -42,15 +49,16 @@ class _MainFoodPageState extends State<MainFoodPage> {
                       height: 45,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          color: Colors.red),
+                          color: AppColors.mainColor),
                       child: const Icon(
                         Icons.search,
-                        color: AppColors.mainColor,
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
                   )
                 ]),
           ),
+          FoodPageBody(),
         ],
       ),
     );
