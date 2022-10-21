@@ -1,6 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/utils/colors.dart';
+import 'package:flutter_complete_guide/utils/dimensions.dart';
 import 'package:flutter_complete_guide/widgets/big_text.dart';
 import 'package:flutter_complete_guide/widgets/icon_and_text_widget.dart';
 import 'package:flutter_complete_guide/widgets/small_text.dart';
@@ -16,7 +17,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currPageValue = 0.0;
   double _scaleFactor = 0.8;
-  double _height = 220;
+  double _height = Dimensions.pageViewContainer;
 
   @override
   void initState() {
@@ -38,7 +39,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         Container(
-          height: 320,
+          height: Dimensions.pageView,
           child: PageView.builder(
               controller: pageController,
               // position parameter will start at 0 and end at itemCount;
@@ -49,10 +50,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 );
               })),
         ),
-        new DotsIndicator(
+        DotsIndicator(
           dotsCount: 5,
           position: _currPageValue,
           decorator: DotsDecorator(
+            activeColor: AppColors.mainColor,
             size: const Size.square(9.0),
             activeSize: const Size(18.0, 9.0),
             activeShape: RoundedRectangleBorder(
@@ -64,7 +66,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   }
 
   Widget _buildPageItem(int index) {
-    Matrix4 matrix = new Matrix4.identity();
+    Matrix4 matrix = Matrix4.identity();
     if (index == _currPageValue.floor()) {
       // this scale is true only for current index
       var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
@@ -97,10 +99,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       transform: matrix,
       child: Stack(children: [
         Container(
-          height: _height,
-          margin: const EdgeInsets.only(left: 10, right: 10),
+          height: Dimensions.pageViewContainer,
+          margin: EdgeInsets.only(
+              left: Dimensions.width10, right: Dimensions.width10),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(Dimensions.radius30),
               color: index.isEven ? const Color(0xFF69c5df) : Color(0xFF9294cc),
               image: const DecorationImage(
                   fit: BoxFit.cover,
@@ -109,10 +112,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            height: 120,
-            margin: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            height: Dimensions.pageViewTextContainer,
+            margin: EdgeInsets.only(
+                left: Dimensions.width30,
+                right: Dimensions.width30,
+                bottom: Dimensions.width30),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: Colors.white,
                 boxShadow: const [
                   BoxShadow(
@@ -130,43 +136,47 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   )
                 ]),
             child: Container(
-              padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+              padding: EdgeInsets.only(
+                  top: Dimensions.height15,
+                  left: Dimensions.height15,
+                  right: Dimensions.height15),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(text: "American Burger"),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: Dimensions.height10,
                     ),
                     Row(
                       children: [
                         Wrap(
                           children: List.generate(
                               5,
-                              (index) => const Icon(
+                              (index) => Icon(
                                     Icons.star,
                                     color: AppColors.mainColor,
-                                    size: 15,
+                                    size: Dimensions.height15,
                                   )),
                         ),
-                        const SizedBox(
-                          width: 10,
+                        SizedBox(
+                          width: Dimensions.width10,
                         ),
                         SmallText(text: "4.5"),
-                        const SizedBox(
-                          width: 10,
+                        SizedBox(
+                          width: Dimensions.width10,
                         ),
                         SmallText(text: "1287"),
-                        const SizedBox(
-                          width: 10,
+                        SizedBox(
+                          width: Dimensions.width10,
                         ),
                         SmallText(text: "comments"),
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: Dimensions.height20,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         IconAndTextWidget(
                           icon: Icons.circle_sharp,
