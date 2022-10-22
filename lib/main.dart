@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/pages/food/recommended_food_detail.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'helper/dependencies.dart' as dep;
 
-void main() {
+Future<void> main() async {
+  // this method will make sure that our dependencies are loaded corectly
+  WidgetsFlutterBinding.ensureInitialized();
+  await dep.init();
   runApp(const MyApp());
 }
 
