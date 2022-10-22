@@ -4,6 +4,7 @@ import 'package:flutter_complete_guide/utils/dimensions.dart';
 import 'package:flutter_complete_guide/widgets/app_column.dart';
 import 'package:flutter_complete_guide/widgets/app_icon.dart';
 import 'package:flutter_complete_guide/widgets/big_text.dart';
+import 'package:flutter_complete_guide/widgets/expandable_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   @override
@@ -11,6 +12,7 @@ class PopularFoodDetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(children: [
+        // backgorund image
         Positioned(
             left: 0,
             right: 0,
@@ -22,6 +24,7 @@ class PopularFoodDetail extends StatelessWidget {
                       fit: BoxFit.cover,
                       image: AssetImage("assets/images/food2.jpg"))),
             )),
+        // icon widget
         Positioned(
             top: Dimensions.height45,
             left: Dimensions.width20,
@@ -33,6 +36,7 @@ class PopularFoodDetail extends StatelessWidget {
                 AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             )),
+        // introduction of food
         Positioned(
             left: 0,
             right: 0,
@@ -59,6 +63,20 @@ class PopularFoodDetail extends StatelessWidget {
                       height: Dimensions.height20,
                     ),
                     BigText(text: "Introduce"),
+                    // expandable text widget
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    const Expanded(
+                      child: SingleChildScrollView(
+                        child: ExpandableTextWidget(
+                            text:
+                                "A hamburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or bread roll amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun orburger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or bread roll amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea brea"),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
                   ],
                 )))
       ]),
