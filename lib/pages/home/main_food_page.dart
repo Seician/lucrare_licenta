@@ -5,6 +5,7 @@ import 'package:flutter_complete_guide/widgets/big_text.dart';
 import 'package:flutter_complete_guide/widgets/small_text.dart';
 
 import '../../utils/colors.dart';
+import '../food/recommended_food_detail.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({super.key});
