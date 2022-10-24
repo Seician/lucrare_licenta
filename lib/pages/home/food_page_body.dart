@@ -1,11 +1,16 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/controllers/popular_product_controller.dart';
+import 'package:flutter_complete_guide/data/repository/popular_product_repo.dart';
 import 'package:flutter_complete_guide/utils/colors.dart';
 import 'package:flutter_complete_guide/utils/dimensions.dart';
 import 'package:flutter_complete_guide/widgets/app_column.dart';
 import 'package:flutter_complete_guide/widgets/big_text.dart';
 import 'package:flutter_complete_guide/widgets/icon_and_text_widget.dart';
 import 'package:flutter_complete_guide/widgets/small_text.dart';
+import 'package:get/get.dart';
+
+import '../../models/products_model.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({super.key});
@@ -40,30 +45,36 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         //slider section
-        Container(
-          height: Dimensions.pageView,
-          child: PageView.builder(
-              controller: pageController,
-              // position parameter will start at 0 and end at itemCount;
-              itemCount: 5,
-              itemBuilder: ((context, position) {
-                return _buildPageItem(
-                  position,
-                );
-              })),
-        ),
+        GetBuilder<PopularProductController>(builder: (popularProducts) {
+          return Container(
+            height: Dimensions.pageView,
+            child: PageView.builder(
+                controller: pageController,
+                // position parameter will start at 0 and end at itemCount;
+                //popular product list is a field from controller
+                itemCount: popularProducts.popularProductList.length,
+                itemBuilder: ((context, position) {
+                  return _buildPageItem(
+                      position, popularProducts.popularProductList[position]);
+                })),
+          );
+        }),
         //dots
-        DotsIndicator(
-          dotsCount: 5,
-          position: _currPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
+        GetBuilder<PopularProductController>(builder: (popularProducts) {
+          return DotsIndicator(
+            dotsCount: popularProducts.popularProductList.isEmpty
+                ? 1
+                : popularProducts.popularProductList.length,
+            position: _currPageValue,
+            decorator: DotsDecorator(
+              activeColor: AppColors.mainColor,
+              size: const Size.square(9.0),
+              activeSize: const Size(18.0, 9.0),
+              activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+            ),
+          );
+        }),
         //Popular text
         SizedBox(
           height: Dimensions.height30,
@@ -173,7 +184,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
 
-  Widget _buildPageItem(int index) {
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = Matrix4.identity();
     if (index == _currPageValue.floor()) {
       // this scale is true only for current index
@@ -213,9 +224,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(Dimensions.radius30),
               color: index.isEven ? const Color(0xFF69c5df) : Color(0xFF9294cc),
-              image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage("assets/images/food1.jpg"))),
+              image: const DecorationImage(fit: BoxFit.cover, image: NetworkImage(
+                  // from Json: AppConstants.BASE_URL+"/uploads/+popularProduct.img!
+                  "assets/images/food1.jpg"))),
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -248,8 +259,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   top: Dimensions.height15,
                   left: Dimensions.height15,
                   right: Dimensions.height15),
-              child: const AppColumn(
-                text: "American Burger",
+              child: AppColumn(
+                text: popularProduct.name!,
               ),
             ),
           ),
