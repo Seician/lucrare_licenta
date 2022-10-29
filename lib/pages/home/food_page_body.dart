@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_complete_guide/controllers/popular_product_controller.dart';
 import 'package:flutter_complete_guide/data/repository/popular_product_repo.dart';
+import 'package:flutter_complete_guide/info/converter.dart';
 import 'package:flutter_complete_guide/utils/colors.dart';
 import 'package:flutter_complete_guide/utils/dimensions.dart';
 import 'package:flutter_complete_guide/widgets/app_column.dart';
@@ -24,6 +28,18 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   var _currPageValue = 0.0;
   double _scaleFactor = 0.8;
   double _height = Dimensions.pageViewContainer;
+  var counter1 = 0;
+  var img = "img";
+
+  Future<Product> getProductFromJson() async {
+    final String response = await rootBundle.loadString('assets/products.json');
+    final parsedJson = await jsonDecode(response);
+    counter1 = Product.fromJson(parsedJson).products.length;
+    img = Product.fromJson(parsedJson).products.first.img!;
+    print(counter1);
+    print(img);
+    return Product.fromJson(parsedJson);
+  }
 
   @override
   void initState() {
@@ -42,6 +58,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   Widget build(BuildContext context) {
+    getProductFromJson();
+    print(counter1);
     return Column(
       children: [
         //slider section
@@ -52,7 +70,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 controller: pageController,
                 // position parameter will start at 0 and end at itemCount;
                 //popular product list is a field from controller
-                itemCount: popularProducts.popularProductList.length,
+                itemCount: counter1,
                 itemBuilder: ((context, position) {
                   return _buildPageItem(
                       position, popularProducts.popularProductList[position]);
@@ -62,9 +80,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         //dots
         GetBuilder<PopularProductController>(builder: (popularProducts) {
           return DotsIndicator(
-            dotsCount: popularProducts.popularProductList.isEmpty
-                ? 1
-                : popularProducts.popularProductList.length,
+            dotsCount: counter1 == 0 ? 1 : counter1,
             position: _currPageValue,
             decorator: DotsDecorator(
               activeColor: AppColors.mainColor,
@@ -122,9 +138,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         borderRadius:
                             BorderRadius.circular(Dimensions.radius20),
                         color: Colors.white38,
-                        image: const DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage("assets/images/food1.jpg"))),
+                        image: DecorationImage(
+                            fit: BoxFit.cover, image: AssetImage("assets/images/food1.jpg"))),
                   ),
                   // text container
                   Expanded(
@@ -224,7 +239,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(Dimensions.radius30),
               color: index.isEven ? const Color(0xFF69c5df) : Color(0xFF9294cc),
-              image: const DecorationImage(fit: BoxFit.cover, image: NetworkImage(
+              image: DecorationImage(fit: BoxFit.cover, image: AssetImage(
                   // from Json: AppConstants.BASE_URL+"/uploads/+popularProduct.img!
                   "assets/images/food1.jpg"))),
         ),

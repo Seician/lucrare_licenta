@@ -1,0 +1,39 @@
+{
+    "total_size":2,
+    "type_id":2,
+    "offset":3,
+    "products":[
+       {
+          "id":1,
+          "name":"Fructe nutritionale",
+          "description":"Descriere",
+          "price":12,
+          "img":"assets/images/food1.jpg",
+          "location":"america",
+          "created_at":"2022-12-23 15:03:24",
+          "updated_at":"2022-12-23 16:03:24",
+          "type_id":2
+       },
+       {
+          "id":2,
+          "name":"Fructe americane",
+          "description":"Descriere2",
+          "price":12,
+          "img":"D:/FlutterProjects/lucrare_licenta/assets/images/food2.jpg",
+          "location":"america",
+          "created_at":"2022-12-23 15:04:24",
+          "updated_at":"2022-12-23 16:03:24",
+          "type_id":2
+       }, {
+        "id":3,
+        "name":"Fructe americane",
+        "description":"Descriere3",
+        "price":12,
+        "img":"D:/FlutterProjects/lucrare_licenta/assets/images/food2.jpg",
+        "location":"america",
+        "created_at":"2022-12-23 15:07:24",
+        "updated_at":"2022-12-23 16:03:24",
+        "type_id":2
+     }
+    ]
+ }
