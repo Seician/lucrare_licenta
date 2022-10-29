@@ -8,7 +8,7 @@ class RecommendedProductController extends GetxController {
   final RecommendedProductRepo recommendedProductRepo;
   List<ProductModel> _recommendedProductList = [];
 
-  List<ProductModel> get popularProductList => _recommendedProductList;
+  List<ProductModel> get recommendedProductList => _recommendedProductList;
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
@@ -19,11 +19,14 @@ class RecommendedProductController extends GetxController {
     Response response =
         await recommendedProductRepo.getRecommendedProductList();
     if (response.statusCode == 200) {
+      print("got products recommended");
       // the response is a .json type data
       _recommendedProductList = [];
       _recommendedProductList.addAll(Product.fromJson(response.body).products);
       _isLoaded = true;
       update(); // similar with set state;
-    } else {}
+    } else {
+      print("couldnot get products recommended");
+    }
   }
 }
