@@ -1,25 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/controllers/recommended_product_controller.dart';
+import 'package:flutter_complete_guide/routes/route_helper.dart';
 import 'package:flutter_complete_guide/utils/colors.dart';
 import 'package:flutter_complete_guide/utils/dimensions.dart';
 import 'package:flutter_complete_guide/widgets/app_icon.dart';
 import 'package:flutter_complete_guide/widgets/big_text.dart';
 import 'package:flutter_complete_guide/widgets/expandable_text.dart';
+import 'package:get/get.dart';
+
+import '../../utils/app_constants.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({super.key});
+  int pageId;
+  RecommendedFoodDetail({super.key, required this.pageId});
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: Dimensions.height30 * 2 + 15,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getInitial());
+                  },
+                  child: AppIcon(icon: Icons.clear),
+                ),
                 AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
@@ -37,7 +51,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 child: Center(
                     child: BigText(
                   size: Dimensions.font26,
-                  text: "Angus Burger",
+                  text: product.name!,
                 )),
               ),
             ),
@@ -45,8 +59,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: Color.fromARGB(255, 223, 222, 222),
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/images/food1.jpg",
+              background: Image.network(
+                AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -57,13 +71,11 @@ class RecommendedFoodDetail extends StatelessWidget {
                 child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.only(
-                      left: Dimensions.width20, right: Dimensions.width20),
-                  child: const ExpandableTextWidget(
-                      text:
-                          "A hamburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or bread roll amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun orburger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or bread roll amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea brea"
-                          "A hamburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or bread roll amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun orburger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or bread roll amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea amburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or brea brea"),
-                )
+                    margin: EdgeInsets.only(
+                        left: Dimensions.width20, right: Dimensions.width20),
+                    child: ExpandableTextWidget(
+                      text: product.description!,
+                    ))
               ],
             )),
           )
@@ -86,7 +98,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   backgroundColor: AppColors.mainColor,
                   icon: Icons.remove),
               BigText(
-                text: "\$12.88 " " X " " 0",
+                text: "\$ ${product.price!} X  0",
                 color: AppColors.mainBlackColor,
                 size: Dimensions.font26,
               ),
