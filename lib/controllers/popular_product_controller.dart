@@ -79,17 +79,13 @@ class PopularProductController extends GetxController {
   }
 
   void addItem(ProductModel product) {
-    // if (_quantity > 0) {
-      _cart.addItem(product, _quantity);
-      _quantity = 0;
-      _inCartItems = _cart.getQuantity(product);
-    // } else {
-    //   Get.snackbar(
-    //     "Numar produse",
-    //     "Trebuie sa ai minim un produs",
-    //     backgroundColor: AppColors.mainColor,
-    //     colorText: Colors.white,
-    //   );
-    // }
+    _cart.addItem(product, _quantity);
+    _quantity = 0;
+    _inCartItems = _cart.getQuantity(product);
+    update();
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
   }
 }
