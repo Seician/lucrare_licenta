@@ -46,7 +46,7 @@ class PopularProductController extends GetxController {
   }
 
   int checkQuantity(int quantity) {
-    if (quantity < 0) {
+    if ((_inCartItems + quantity) < 0) {
       Get.snackbar(
         "Numar produse",
         "Cantitatea este deja 0",
@@ -54,7 +54,7 @@ class PopularProductController extends GetxController {
         colorText: Colors.white,
       );
       return 0;
-    } else if (quantity > 30) {
+    } else if ((_inCartItems + quantity) > 30) {
       Get.snackbar(
         "Numar produse",
         "Cantitatea maxima atinsa.",
@@ -67,23 +67,29 @@ class PopularProductController extends GetxController {
     }
   }
 
-  void initProduct(CartController cart) {
+  void initProduct(ProductModel product, CartController cart) {
     _quantity = 0;
     _inCartItems = 0;
     _cart = cart;
+    var exist = false;
+    exist = _cart.existInCart(product);
+    if (exist) {
+      _inCartItems = _cart.getQuantity(product);
+    }
   }
 
   void addItem(ProductModel product) {
-    if (_quantity > 0) {
-      _cart.addItem(product, quantity);
+    // if (_quantity > 0) {
+      _cart.addItem(product, _quantity);
       _quantity = 0;
-    } else {
-      Get.snackbar(
-        "Numar produse",
-        "Trebuie sa ai minim un produs",
-        backgroundColor: AppColors.mainColor,
-        colorText: Colors.white,
-      );
-    }
+      _inCartItems = _cart.getQuantity(product);
+    // } else {
+    //   Get.snackbar(
+    //     "Numar produse",
+    //     "Trebuie sa ai minim un produs",
+    //     backgroundColor: AppColors.mainColor,
+    //     colorText: Colors.white,
+    //   );
+    // }
   }
 }
