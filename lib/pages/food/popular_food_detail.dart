@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/controllers/popular_product_controller.dart';
+import 'package:flutter_complete_guide/pages/cart/cart_page.dart';
 import 'package:flutter_complete_guide/pages/home/main_food_page.dart';
 import 'package:flutter_complete_guide/utils/app_constants.dart';
 import 'package:flutter_complete_guide/utils/colors.dart';
@@ -60,11 +61,16 @@ class PopularFoodDetail extends StatelessWidget {
                             ? Positioned(
                                 right: 0,
                                 top: 0,
-                                child: AppIcon(
-                                  icon: Icons.circle,
-                                  size: 20,
-                                  iconColor: Colors.transparent,
-                                  backgroundColor: AppColors.mainColor,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.to(CartPage());
+                                  },
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    size: 20,
+                                    iconColor: Colors.transparent,
+                                    backgroundColor: AppColors.mainColor,
+                                  ),
                                 ),
                               )
                             : Container(),
