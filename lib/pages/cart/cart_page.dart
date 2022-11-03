@@ -8,6 +8,7 @@ import 'package:flutter_complete_guide/widgets/app_icon.dart';
 import 'package:flutter_complete_guide/widgets/big_text.dart';
 import 'package:get/get.dart';
 
+import '../../routes/route_helper.dart';
 import '../../widgets/small_text.dart';
 
 class CartPage extends StatelessWidget {
@@ -35,7 +36,7 @@ class CartPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => MainFoodPage());
+                    Get.toNamed(RouteHelper.getInitial());
                   },
                   child: AppIcon(
                     icon: Icons.home_outlined,
@@ -65,8 +66,9 @@ class CartPage extends StatelessWidget {
                 removeTop: true,
                 child: GetBuilder<CartController>(
                   builder: (cartController) {
+                    var _cartList = cartController.getItems;
                     return ListView.builder(
-                        itemCount: cartController.getItems.length,
+                        itemCount: _cartList.length,
                         itemBuilder: (_, index) {
                           return Container(
                             width: double.maxFinite,
@@ -143,8 +145,9 @@ class CartPage extends StatelessWidget {
                                                   width: Dimensions.width10 / 2,
                                                 ),
                                                 BigText(
-                                                    text:
-                                                        "0"), // popularProduct.inCartItems.toString()),
+                                                    text: _cartList[index]
+                                                        .quantity
+                                                        .toString()), // popularProduct.inCartItems.toString()),
                                                 SizedBox(
                                                   width: Dimensions.width10 / 2,
                                                 ),
