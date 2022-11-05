@@ -19,11 +19,13 @@ class CartRepo {
   void addToCartList(List<CartModel> cartList) {
     // sharedPreferences.remove(AppConstants.CART_LIST);
     // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+    var time = DateTime.now().toString();
     cart = [];
     /*
     Convert objects to string because sharedPreference only accepts string
     */
     cartList.forEach((element) {
+      element.time = time;
       return cart.add(jsonEncode(element));
     });
     // same as the line above but more fancy
@@ -80,10 +82,16 @@ class CartRepo {
         AppConstants.CART_HISTORY_LIST, cartHistory);
     print("The length of history list is " +
         getCartHistoryList().length.toString());
+    for (int j = 0; j < getCartHistoryList().length; j++) {
+      print("The time for the order is " +
+          getCartHistoryList()[j].time.toString());
+    }
   }
 
   void removeCart() {
     cart = [];
     sharedPreferences.remove(AppConstants.CART_LIST);
   }
+
+  
 }

@@ -1,7 +1,9 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/pages/home/main_food_page.dart';
 import 'package:flutter_complete_guide/utils/colors.dart';
+
+import '../cart/cart_history.dart';
 // import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     MainFoodPage(),
     Container(child: Center(child: Text("Next page"))),
-    Container(child: Center(child: Text("Next Next page"))),
+    CartHistory(),
     Container(child: Center(child: Text("Next Next Next page"))),
   ];
 
@@ -104,8 +106,8 @@ class _HomePageState extends State<HomePage> {
           ]),
     );
   }
- 
- // Persistent NavBar
+
+  // Persistent NavBar
 
   // @override
   // Widget build(BuildContext context) {
