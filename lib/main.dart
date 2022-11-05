@@ -7,6 +7,7 @@ import 'package:flutter_complete_guide/pages/home/main_food_page.dart';
 import 'package:flutter_complete_guide/pages/splash/splash_page.dart';
 import 'package:flutter_complete_guide/routes/route_helper.dart';
 import 'package:get/get.dart';
+import 'controllers/cart_controller.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
 
@@ -20,9 +21,10 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  // This widget is the root of application.
   @override
   Widget build(BuildContext context) {
+    Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(builder: (_) {
         return GetMaterialApp(
