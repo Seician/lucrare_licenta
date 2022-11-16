@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/controllers/popular_product_controller.dart';
+import 'package:flutter_complete_guide/pages/auth/sign_up_page.dart';
 import 'package:flutter_complete_guide/pages/cart/cart_page.dart';
 import 'package:flutter_complete_guide/pages/food/popular_food_detail.dart';
 import 'package:flutter_complete_guide/pages/food/recommended_food_detail.dart';
@@ -30,9 +31,10 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
+          home: SignUpPage(),
           // home: SplashScreen(),
-          initialRoute: RouteHelper.getSplashPage(),
-          getPages: RouteHelper.routes,
+          //initialRoute: RouteHelper.getSplashPage(),
+          // getPages: RouteHelper.routes,
         );
       });
     });
