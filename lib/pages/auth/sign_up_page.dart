@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/base/show_custom_snackbar.dart';
+import 'package:flutter_complete_guide/models/signup_body_model.dart';
 import 'package:flutter_complete_guide/utils/colors.dart';
 import 'package:flutter_complete_guide/utils/dimensions.dart';
 import 'package:flutter_complete_guide/widgets/big_text.dart';
@@ -42,6 +43,9 @@ class SignUpPage extends StatelessWidget {
             title: "Password length");
       } else {
         showCustomSnackBar("All went well", title: "Perfect");
+        SignUpBody signUpBody = SignUpBody(
+            name: name, phone: phone, email: email, password: password);
+        print(signUpBody.toString());
       }
     }
 
