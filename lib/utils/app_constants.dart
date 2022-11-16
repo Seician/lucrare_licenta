@@ -8,6 +8,9 @@ class AppConstants {
   // static const String DRINKS_URL = "/api/v1/products/drinks";
   static const String UPLOAD_URL = "/uploads/";
 
+  //auth end points
+  static const String REGISTRATION_URI = "/api/v1/auth/register";
+
   static const String TOKEN = "DBtoken";
   static String CART_LIST = "cart-list";
   static String CART_HISTORY_LIST = "cart-history-list";

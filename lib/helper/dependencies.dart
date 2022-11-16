@@ -1,5 +1,7 @@
+import 'package:flutter_complete_guide/controllers/auth_controller.dart';
 import 'package:flutter_complete_guide/controllers/cart_controller.dart';
 import 'package:flutter_complete_guide/data/api/api_client.dart';
+import 'package:flutter_complete_guide/data/repository/auth_repo.dart';
 import 'package:flutter_complete_guide/data/repository/cart_repo.dart';
 import 'package:flutter_complete_guide/utils/app_constants.dart';
 import 'package:get/get.dart';
@@ -20,11 +22,13 @@ Future<void> init() async {
   //repos
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedProductRepo(apiClient: Get.find()));
-  Get.lazyPut(() => CartRepo(sharedPreferences:Get.find()));
-
+  Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
+  Get.lazyPut(
+      () => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   //controllers
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(
       () => RecommendedProductController(recommendedProductRepo: Get.find()));
   Get.lazyPut(() => CartController(cartRepo: Get.find()));
+  Get.lazyPut(() => AuthController(authRepo: Get.find()));
 }
