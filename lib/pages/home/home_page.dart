@@ -18,10 +18,10 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   // late PersistentTabController _controller;
   List pages = [
-    MainFoodPage(),
-    SignUpPage(),
-    CartHistory(),
-    AccountPage(),
+    const MainFoodPage(),
+    const SignUpPage(),
+    const CartHistory(),
+    const AccountPage(),
   ];
 
   void onTapNav(int index) {

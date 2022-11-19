@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/utils/dimensions.dart';
 
 class AppIcon extends StatelessWidget {
   final IconData icon;
@@ -8,7 +7,7 @@ class AppIcon extends StatelessWidget {
   final double size;
   final double iconSize;
 
-  AppIcon(
+  const AppIcon(
       {super.key,
       required this.icon,
       // we can't use dynamic variables here

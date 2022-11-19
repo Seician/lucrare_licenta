@@ -16,7 +16,7 @@ class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
   final String page;
 
-  RecommendedFoodDetail({super.key, required this.pageId, required this.page});
+ const RecommendedFoodDetail({super.key, required this.pageId, required this.page});
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +54,9 @@ class RecommendedFoodDetail extends StatelessWidget {
                       },
                       child: Stack(
                         children: [
-                          AppIcon(icon: Icons.shopping_cart_outlined),
+                          const AppIcon(icon: Icons.shopping_cart_outlined),
                           Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
+                              ? const Positioned(
                                   right: 0,
                                   top: 0,
                                   child: AppIcon(
@@ -106,7 +106,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 ),
               ),
               pinned: true,
-              backgroundColor: Color.fromARGB(255, 223, 222, 222),
+              backgroundColor:const Color.fromARGB(255, 223, 222, 222),
               expandedHeight: 300,
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.network(

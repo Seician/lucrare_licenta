@@ -237,7 +237,7 @@ class CartPage extends StatelessWidget {
                         ),
                       ),
                     ))
-                : NoDataPage(text: "Cosul de cumparaturi este gol!");
+                : const NoDataPage(text: "Cosul de cumparaturi este gol!");
           })
         ]),
         bottomNavigationBar: GetBuilder<CartController>(

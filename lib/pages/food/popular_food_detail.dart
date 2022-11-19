@@ -57,7 +57,7 @@ class PopularFoodDetail extends StatelessWidget {
                           Get.toNamed(RouteHelper.getInitial());
                         }
                       },
-                      child: AppIcon(icon: Icons.arrow_back_ios)),
+                      child: const AppIcon(icon: Icons.arrow_back_ios)),
                   GetBuilder<PopularProductController>(builder: (controller) {
                     return GestureDetector(
                       onTap: () {
@@ -67,9 +67,9 @@ class PopularFoodDetail extends StatelessWidget {
                       },
                       child: Stack(
                         children: [
-                          AppIcon(icon: Icons.shopping_cart_outlined),
+                          const AppIcon(icon: Icons.shopping_cart_outlined),
                           controller.totalItems >= 1
-                              ? Positioned(
+                              ? const Positioned(
                                   right: 0,
                                   top: 0,
                                   child: AppIcon(

@@ -150,7 +150,7 @@ class CartHistory extends StatelessWidget {
                                                         ),
                                                       ),
                                                       child:
-                                                          Text("salut, salut"),
+                                                          const Text("salut, salut"),
                                                     )
                                                   : Container();
                                             }),
