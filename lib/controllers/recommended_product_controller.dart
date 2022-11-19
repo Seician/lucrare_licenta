@@ -1,4 +1,3 @@
-import 'package:flutter_complete_guide/data/repository/popular_product_repo.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/recommended_product_repo.dart';
