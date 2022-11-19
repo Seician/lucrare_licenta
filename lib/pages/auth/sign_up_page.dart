@@ -7,6 +7,7 @@ import 'package:flutter_complete_guide/utils/dimensions.dart';
 import 'package:flutter_complete_guide/widgets/big_text.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/auth_controller.dart';
 import '../../widgets/app_text_field.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -22,6 +23,8 @@ class SignUpPage extends StatelessWidget {
 
     // validation method
     void _registration() {
+      var authController = Get.find<AuthController>();
+
       String name = nameController.text.trim();
       String phone = phoneController.text.trim();
       String email = emailController.text.trim();
@@ -45,6 +48,14 @@ class SignUpPage extends StatelessWidget {
         showCustomSnackBar("All went well", title: "Perfect");
         SignUpBody signUpBody = SignUpBody(
             name: name, phone: phone, email: email, password: password);
+        authController.registration(signUpBody).then((status) {
+          if (status.isSucces) {
+            print("Succes registration");
+          } else {
+            showCustomSnackBar(status.message); 
+          }
+        });
+
         print(signUpBody.toString());
       }
     }
