@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/pages/auth/sign_in_page.dart';
 import 'package:flutter_complete_guide/pages/auth/sign_up_page.dart';
 import 'package:flutter_complete_guide/pages/home/main_food_page.dart';
 import 'package:flutter_complete_guide/utils/colors.dart';
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   // late PersistentTabController _controller;
   List pages = [
     const MainFoodPage(),
-    const SignUpPage(),
+    Container(child:Text("History page"),),
     const CartHistory(),
     const AccountPage(),
   ];

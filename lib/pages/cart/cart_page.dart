@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/base/no_data_page.dart';
-import 'package:flutter_complete_guide/controllers/cart_controller.dart';
-import 'package:flutter_complete_guide/utils/colors.dart';
-import 'package:flutter_complete_guide/utils/dimensions.dart';
-import 'package:flutter_complete_guide/widgets/app_icon.dart';
-import 'package:flutter_complete_guide/widgets/big_text.dart';
+
 import 'package:get/get.dart';
 
+import '../../base/no_data_page.dart';
+import '../../controllers/auth_controller.dart';
+import '../../controllers/cart_controller.dart';
 import '../../controllers/popular_product_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/app_constants.dart';
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/app_icon.dart';
+import '../../widgets/big_text.dart';
 import '../../widgets/small_text.dart';
 
 class CartPage extends StatelessWidget {
@@ -292,9 +294,13 @@ class CartPage extends StatelessWidget {
                           ),
                           child: GestureDetector(
                             onTap: () {
-                              print("check out button tapped");
-                              // popularProduct.addItem(product);
-                              cartController.addToHistory();
+                              if (Get.find<AuthController>().userLoggedIn()) {
+                                print("check out button tapped");
+                                // popularProduct.addItem(product);
+                                cartController.addToHistory();
+                              } else {
+                                Get.toNamed(RouteHelper.getSignInPage());
+                              }
                             },
                             child: BigText(
                               text: "Check Out",

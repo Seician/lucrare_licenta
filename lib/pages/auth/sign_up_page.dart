@@ -9,6 +9,7 @@ import 'package:flutter_complete_guide/widgets/big_text.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/auth_controller.dart';
+import '../../routes/route_helper.dart';
 import '../../widgets/app_text_field.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -48,7 +49,7 @@ class SignUpPage extends StatelessWidget {
             name: name, phone: phone, email: email, password: password);
         authController.registration(signUpBody).then((status) {
           if (status.isSucces) {
-            print("Succes registration");
+            Get.toNamed(RouteHelper.getInitial());
           } else {
             showCustomSnackBar(status.message);
           }
