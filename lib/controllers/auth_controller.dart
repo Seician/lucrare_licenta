@@ -53,8 +53,12 @@ class AuthController extends GetxController implements GetxService {
   void saveUserNumberAndPassword(String number, String password) {
     authRepo.saveUserNumberAndPassword(number, password);
   }
-  
- bool userLoggedIn()  {
+
+  bool userLoggedIn() {
     return authRepo.userLoggedIn();
+  }
+
+  bool clearSharedData() {
+    return authRepo.clearShareData();
   }
 }

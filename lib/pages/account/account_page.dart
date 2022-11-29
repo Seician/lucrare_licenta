@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/controllers/auth_controller.dart';
+import 'package:flutter_complete_guide/controllers/cart_controller.dart';
+import 'package:flutter_complete_guide/routes/route_helper.dart';
 import 'package:flutter_complete_guide/utils/colors.dart';
 import 'package:flutter_complete_guide/utils/dimensions.dart';
 import 'package:flutter_complete_guide/widgets/account_widget.dart';
 import 'package:flutter_complete_guide/widgets/app_icon.dart';
 import 'package:flutter_complete_guide/widgets/big_text.dart';
+import 'package:get/get.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -104,14 +108,28 @@ class AccountPage extends StatelessWidget {
                     SizedBox(
                       height: Dimensions.height30,
                     ),
-                    AccountWidget(
-                      appIcon: AppIcon(
-                          icon: Icons.message_outlined,
-                          backgroundColor: Colors.redAccent,
-                          iconColor: Colors.white,
-                          iconSize: Dimensions.height10 * 5 / 2,
-                          size: Dimensions.height10 * 5),
-                      bigText: BigText(text: "Mesaje"),
+
+                    GestureDetector(
+                      onTap: () {
+                        if (Get.find<AuthController>().userLoggedIn()) {
+                          Get.find<AuthController>().clearSharedData();
+                          Get.find<CartController>().clear();
+                          Get.find<CartController>().clearCartHistory();
+                          print('tapped');
+                          Get.offNamed(RouteHelper.getSignInPage());
+                        } else {
+                          print('You logged out');
+                        }
+                      },
+                      child: AccountWidget(
+                        appIcon: AppIcon(
+                            icon: Icons.logout,
+                            backgroundColor: Colors.redAccent,
+                            iconColor: Colors.white,
+                            iconSize: Dimensions.height10 * 5 / 2,
+                            size: Dimensions.height10 * 5),
+                        bigText: BigText(text: "Logout"),
+                      ),
                     ),
                     SizedBox(
                       height: Dimensions.height30,
