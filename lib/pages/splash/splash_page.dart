@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/routes/route_helper.dart';
-import 'package:flutter_complete_guide/utils/dimensions.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/popular_product_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
+import '../../routes/route_helper.dart';
+import '../../utils/dimensions.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/controllers/cart_controller.dart';
-import 'package:flutter_complete_guide/data/repository/popular_product_repo.dart';
-import 'package:flutter_complete_guide/models/cart_model.dart';
-import 'package:flutter_complete_guide/utils/colors.dart';
+
 import 'package:get/get.dart';
 
+import '../data/repository/popular_product_repo.dart';
+import '../models/cart_model.dart';
 import '../models/products_model.dart';
+import '../utils/colors.dart';
+import 'cart_controller.dart';
 
 class PopularProductController extends GetxController {
   final PopularProductRepo popularProductRepo;

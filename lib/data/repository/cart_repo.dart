@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter_complete_guide/utils/app_constants.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/cart_model.dart';
+import '../../utils/app_constants.dart';
 
 class CartRepo {
   final SharedPreferences sharedPreferences;

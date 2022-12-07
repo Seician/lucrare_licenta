@@ -1,6 +1,8 @@
-import 'package:flutter_complete_guide/data/api/api_client.dart';
-import 'package:flutter_complete_guide/utils/app_constants.dart';
+
 import 'package:get/get.dart';
+
+import '../../utils/app_constants.dart';
+import '../api/api_client.dart';
 
 class RecommendedProductRepo extends GetxService {
   final ApiClient apiClient;

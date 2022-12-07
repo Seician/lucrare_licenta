@@ -1,7 +1,9 @@
-import 'package:flutter_complete_guide/data/repository/auth_repo.dart';
-import 'package:flutter_complete_guide/models/response_model.dart';
-import 'package:flutter_complete_guide/models/signup_body_model.dart';
+
 import 'package:get/get.dart';
+
+import '../data/repository/auth_repo.dart';
+import '../models/response_model.dart';
+import '../models/signup_body_model.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;

@@ -1,4 +1,6 @@
-import 'package:flutter_complete_guide/models/products_model.dart';
+
+
+import 'products_model.dart';
 
 class CartModel {
   int? id;

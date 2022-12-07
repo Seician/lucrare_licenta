@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/widgets/big_text.dart';
-import 'package:flutter_complete_guide/widgets/small_text.dart';
+
+
 
 import '../utils/colors.dart';
 import '../utils/dimensions.dart';
+import 'big_text.dart';
 import 'icon_and_text_widget.dart';
+import 'small_text.dart';
 
 class AppColumn extends StatelessWidget {
   final String text;

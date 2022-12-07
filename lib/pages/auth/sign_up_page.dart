@@ -1,16 +1,17 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/base/custom_loader.dart';
-import 'package:flutter_complete_guide/base/show_custom_snackbar.dart';
-import 'package:flutter_complete_guide/models/signup_body_model.dart';
-import 'package:flutter_complete_guide/utils/colors.dart';
-import 'package:flutter_complete_guide/utils/dimensions.dart';
-import 'package:flutter_complete_guide/widgets/big_text.dart';
+
 import 'package:get/get.dart';
 
+import '../../base/custom_loader.dart';
+import '../../base/show_custom_snackbar.dart';
 import '../../controllers/auth_controller.dart';
+import '../../models/signup_body_model.dart';
 import '../../routes/route_helper.dart';
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
 import '../../widgets/app_text_field.dart';
+import '../../widgets/big_text.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -49,6 +50,7 @@ class SignUpPage extends StatelessWidget {
             name: name, phone: phone, email: email, password: password);
         authController.registration(signUpBody).then((status) {
           if (status.isSucces) {
+            print("Succes registration");
             Get.toNamed(RouteHelper.getInitial());
           } else {
             showCustomSnackBar(status.message);

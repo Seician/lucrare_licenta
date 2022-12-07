@@ -1,8 +1,10 @@
-import 'package:flutter_complete_guide/data/api/api_client.dart';
-import 'package:flutter_complete_guide/models/signup_body_model.dart';
-import 'package:flutter_complete_guide/utils/app_constants.dart';
+
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../models/signup_body_model.dart';
+import '../../utils/app_constants.dart';
+import '../api/api_client.dart';
 
 class AuthRepo {
   final ApiClient apiClient;

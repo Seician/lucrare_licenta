@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/utils/colors.dart';
-import 'package:flutter_complete_guide/utils/dimensions.dart';
 import 'package:get/get.dart';
 
 import '../controllers/auth_controller.dart';
+import '../utils/colors.dart';
+import '../utils/dimensions.dart';
 
 class CustomLoader extends StatelessWidget {
   const CustomLoader({super.key});

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/controllers/popular_product_controller.dart';
-import 'package:flutter_complete_guide/controllers/recommended_product_controller.dart';
-import 'package:flutter_complete_guide/routes/route_helper.dart';
-import 'package:flutter_complete_guide/utils/colors.dart';
-import 'package:flutter_complete_guide/utils/dimensions.dart';
-import 'package:flutter_complete_guide/widgets/app_icon.dart';
-import 'package:flutter_complete_guide/widgets/big_text.dart';
-import 'package:flutter_complete_guide/widgets/expandable_text.dart';
+
 import 'package:get/get.dart';
+import 'package:lucrare_licenta/pages/cart/cart_page.dart';
 
 import '../../controllers/cart_controller.dart';
+import '../../controllers/popular_product_controller.dart';
+import '../../controllers/recommended_product_controller.dart';
+import '../../routes/route_helper.dart';
 import '../../utils/app_constants.dart';
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/app_icon.dart';
+import '../../widgets/big_text.dart';
+import '../../widgets/expandable_text.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
@@ -46,34 +48,39 @@ class RecommendedFoodDetail extends StatelessWidget {
                     child: AppIcon(icon: Icons.clear),
                   ),
                   // AppIcon(icon: Icons.shopping_cart_outlined),
-                   GetBuilder<PopularProductController>(builder: (controller) {
-                    return  Stack(
-                        children: [
-                          const AppIcon(icon: Icons.shopping_cart_outlined),
-                          controller.totalItems >= 1
-                              ? const Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: AppIcon(
+                  GetBuilder<PopularProductController>(builder: (controller) {
+                    return Stack(
+                      children: [
+                        const AppIcon(icon: Icons.shopping_cart_outlined),
+                        controller.totalItems >= 1
+                            ? Positioned(
+                                right: 0,
+                                top: 0,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => CartPage());
+                                  },
+                                  child: const AppIcon(
                                     icon: Icons.circle,
                                     size: 20,
                                     iconColor: Colors.transparent,
                                     backgroundColor: AppColors.mainColor,
                                   ),
-                                )
-                              : Container(),
-                          controller.totalItems >= 1
-                              ? Positioned(
-                                  right: 3,
-                                  top: 3,
-                                  child: BigText(
-                                    text: controller.totalItems.toString(),
-                                    size: 12,
-                                    color: Colors.white,
-                                  ),
-                                )
-                              : Container(),
-                        ],
+                                ),
+                              )
+                            : Container(),
+                        controller.totalItems >= 1
+                            ? Positioned(
+                                right: 3,
+                                top: 3,
+                                child: BigText(
+                                  text: controller.totalItems.toString(),
+                                  size: 12,
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Container(),
+                      ],
                     );
                   }),
                 ],

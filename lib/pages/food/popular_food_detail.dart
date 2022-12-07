@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/controllers/popular_product_controller.dart';
-import 'package:flutter_complete_guide/utils/app_constants.dart';
-import 'package:flutter_complete_guide/utils/colors.dart';
-import 'package:flutter_complete_guide/utils/dimensions.dart';
-import 'package:flutter_complete_guide/widgets/app_column.dart';
-import 'package:flutter_complete_guide/widgets/app_icon.dart';
-import 'package:flutter_complete_guide/widgets/big_text.dart';
-import 'package:flutter_complete_guide/widgets/expandable_text.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/cart_controller.dart';
+import '../../controllers/popular_product_controller.dart';
 import '../../routes/route_helper.dart';
+import '../../utils/app_constants.dart';
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/app_column.dart';
+import '../../widgets/app_icon.dart';
+import '../../widgets/big_text.dart';
+import '../../widgets/expandable_text.dart';
+import '../cart/cart_page.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   int pageId;
@@ -63,14 +64,19 @@ class PopularFoodDetail extends StatelessWidget {
                       children: [
                         const AppIcon(icon: Icons.shopping_cart_outlined),
                         controller.totalItems >= 1
-                            ? const Positioned(
+                            ? Positioned(
                                 right: 0,
                                 top: 0,
-                                child: AppIcon(
-                                  icon: Icons.circle,
-                                  size: 20,
-                                  iconColor: Colors.transparent,
-                                  backgroundColor: AppColors.mainColor,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => CartPage());
+                                  },
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    size: 20,
+                                    iconColor: Colors.transparent,
+                                    backgroundColor: AppColors.mainColor,
+                                  ),
                                 ),
                               )
                             : Container(),

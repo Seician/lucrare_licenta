@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/controllers/popular_product_controller.dart';
-import 'package:flutter_complete_guide/pages/auth/sign_in_page.dart';
+
 import 'package:get/get.dart';
 import 'controllers/cart_controller.dart';
+import 'controllers/popular_product_controller.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
 import 'routes/route_helper.dart';

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/data/repository/cart_repo.dart';
-import 'package:flutter_complete_guide/models/products_model.dart';
+
 import 'package:get/get.dart';
 
+import '../data/repository/cart_repo.dart';
 import '../models/cart_model.dart';
+import '../models/products_model.dart';
 import '../utils/colors.dart';
 
 class CartController extends GetxController {

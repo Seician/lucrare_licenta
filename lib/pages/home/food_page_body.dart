@@ -1,18 +1,19 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/controllers/popular_product_controller.dart';
-import 'package:flutter_complete_guide/routes/route_helper.dart';
-import 'package:flutter_complete_guide/utils/app_constants.dart';
-import 'package:flutter_complete_guide/utils/colors.dart';
-import 'package:flutter_complete_guide/utils/dimensions.dart';
-import 'package:flutter_complete_guide/widgets/app_column.dart';
-import 'package:flutter_complete_guide/widgets/big_text.dart';
-import 'package:flutter_complete_guide/widgets/icon_and_text_widget.dart';
-import 'package:flutter_complete_guide/widgets/small_text.dart';
+
 import 'package:get/get.dart';
 
+import '../../controllers/popular_product_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
 import '../../models/products_model.dart';
+import '../../routes/route_helper.dart';
+import '../../utils/app_constants.dart';
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/app_column.dart';
+import '../../widgets/big_text.dart';
+import '../../widgets/icon_and_text_widget.dart';
+import '../../widgets/small_text.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({super.key});
