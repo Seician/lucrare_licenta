@@ -3,100 +3,72 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../models/cart_model.dart';
-import '../../utils/app_constants.dart';
-
-class CartRepo {
+import '../../models/cart_item.dart';
+class CartRepo{
   final SharedPreferences sharedPreferences;
-
-  CartRepo({required this.sharedPreferences});
-
-  List<String> cart = [];
+  CartRepo({ required this.sharedPreferences});
+  List<String> cart=[];
   List<String> cartHistory = [];
-
-/*
-    Add data to sharedPreferences list;
- */
-  void addToCartList(List<CartModel> cartList) {
-    // sharedPreferences.remove(AppConstants.CART_LIST);
-    // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
-    var time = DateTime.now().toString();
-    cart = [];
-    /*
-    Convert objects to string because sharedPreference only accepts string
-    */
-    cartList.forEach((element) {
-      element.time = time;
-      return cart.add(jsonEncode(element));
-    });
-    // same as the line above but more fancy
-    //cartList.forEach((element) => cart.add(jsonEncode(element)));
-
-    sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-    print(sharedPreferences.getStringList(AppConstants.CART_LIST));
-  }
-
-/*
-    Retrieve data from sharedPreferences list;
- */
-  List<CartModel> getCartList() {
+  List<CartItem> getCartList() {
+    sharedPreferences.remove("Cart-list");
+    sharedPreferences.remove("Cart-list-list");
     List<String> carts = [];
-
-    if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
-      carts = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
-      print("inside getCartList " + carts.toString());
+    if(sharedPreferences.containsKey("Cart-list")) {
+      carts = sharedPreferences.getStringList("Cart-list")!;
     }
-    List<CartModel> cartList = [];
+    List<CartItem> cartList = [];
 
-    carts.forEach((element) {
-      cartList.add(CartModel.fromJson(jsonDecode(element)));
-    });
+    carts.forEach((cart) => cartList.add(CartItem.fromJson(jsonDecode(cart))) );
     return cartList;
   }
+  void addToCartList(List<CartItem> cartProductList) {
+    String time = DateTime.now().toString();
+    cart = [];
+    cartProductList.forEach((cartModel) {
+      /*
+      adding time help us to make history of shopping cart.
+      based on this we can find the items that were bought at
+      one time. This time is unique for every complete order
+       */
+      cartModel.time=time;
+     return cart.add(jsonEncode(cartModel));
+    });
 
-  List<CartModel> getCartHistoryList() {
-    if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
-      cartHistory = [];
-      cartHistory =
-          sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
-    }
-    List<CartModel> cartListHistory = [];
-
-    cartHistory.forEach((element) =>
-        cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
-
-    return cartListHistory;
+    sharedPreferences.setStringList("Cart-list", cart);
   }
 
   void addToCartHistoryList() {
-    if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
-      cartHistory =
-          sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
-    }
 
-    for (int i = 0; i < cart.length; i++) {
-      print("history list " + cart[i]);
-      cartHistory.add(cart[i]);
+    for(int i=0; i<cart.length; i++){
+      cartHistory.add(cart[i].replaceAll("\\", ""));
     }
-    removeCart();
-    sharedPreferences.setStringList(
-        AppConstants.CART_HISTORY_LIST, cartHistory);
-    print("The length of history list is " +
-        getCartHistoryList().length.toString());
-    for (int j = 0; j < getCartHistoryList().length; j++) {
-      print("The time for the order is " +
-          getCartHistoryList()[j].time.toString());
-    }
+    sharedPreferences.setStringList("Cart-list-list", cartHistory);
+    //set cart to zero
+    cart=[];
+    sharedPreferences.remove("Cart-list");
+
   }
 
-  void removeCart() {
-    cart = [];
-    sharedPreferences.remove(AppConstants.CART_LIST);
+  List<CartItem> getCartHistoryList() {
+    if(sharedPreferences.containsKey("Cart-list-list")){
+
+      cartHistory = sharedPreferences.getStringList("Cart-list-list")!;
+    }else{
+      print("...............................nothing.........");
+    }
+    List<CartItem> cartList = [];
+    /*
+    We always need to convert the map or json to object or model
+     */
+    cartHistory.forEach((cart) => cartList.add(CartItem.fromJson(jsonDecode(cart))) );
+    return cartList;
   }
 
-  void clearCartHistory() {
-    removeCart();
-    cartHistory = [];
-    sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+  void removeCartSharedPreference(){
+    sharedPreferences.remove("Cart-list");
+    /*
+    bug fix
+     */
+    sharedPreferences.remove("Cart-list-list");
   }
 }

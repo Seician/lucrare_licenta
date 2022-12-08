@@ -7,21 +7,29 @@ import '../models/signup_body_model.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
-  AuthController({
-    required this.authRepo,
-  });
+
+  AuthController({required this.authRepo});
 
   bool _isLoading = false;
+  bool _notification = true;
+  bool _acceptTerms = true;
+
   bool get isLoading => _isLoading;
+
+  bool get notification => _notification;
+
+  bool get acceptTerms => _acceptTerms;
 
   Future<ResponseModel> registration(SignUpBody signUpBody) async {
     _isLoading = true;
     update();
     Response response = await authRepo.registration(signUpBody);
-    late ResponseModel responseModel;
-
+    ResponseModel responseModel;
     if (response.statusCode == 200) {
-      authRepo.saveUserToken(response.body["token"]);
+
+        authRepo.saveUserToken(response.body["token"]);
+        //await authRepo.updateToken();
+
       responseModel = ResponseModel(true, response.body["token"]);
     } else {
       responseModel = ResponseModel(false, response.statusText!);
@@ -31,19 +39,19 @@ class AuthController extends GetxController implements GetxService {
     return responseModel;
   }
 
-  Future<ResponseModel> login(String email, String password) async {
-    print("Getting token");
-    print(authRepo.getUserToken());
+
+  Future<ResponseModel> login(String phone, String password) async {
     _isLoading = true;
     update();
-    Response response = await authRepo.login(email, password);
-    late ResponseModel responseModel;
-
+    Response response = await authRepo.login(phone, password);
+    ResponseModel responseModel;
     if (response.statusCode == 200) {
-      print("Backend token");
-      authRepo.saveUserToken(response.body["token"]);
-      print(response.body["token"].toString());
-      responseModel = ResponseModel(true, response.body["token"]);
+
+        authRepo.saveUserToken(response.body['token']);
+       // await authRepo.updateToken();
+
+      responseModel = ResponseModel(true,
+          response.body['token']);
     } else {
       responseModel = ResponseModel(false, response.statusText!);
     }
@@ -51,16 +59,16 @@ class AuthController extends GetxController implements GetxService {
     update();
     return responseModel;
   }
-
+  bool clearSharedData() {
+    return authRepo.clearSharedData();
+  }
   void saveUserNumberAndPassword(String number, String password) {
     authRepo.saveUserNumberAndPassword(number, password);
   }
-
-  bool userLoggedIn() {
-    return authRepo.userLoggedIn();
+  bool isLoggedIn() {
+    return authRepo.isLoggedIn();
   }
-
-  bool clearSharedData() {
-    return authRepo.clearShareData();
+  String getUserToken() {
+    return authRepo.getUserToken();
   }
 }

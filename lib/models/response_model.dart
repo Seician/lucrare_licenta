@@ -1,7 +1,8 @@
 class ResponseModel {
-  bool _isSucces;
+  bool _isSuccess;
   String _message;
-  ResponseModel(this._isSucces, this._message);
+  ResponseModel(this._isSuccess, this._message);
+
   String get message => _message;
-  bool get isSucces =>_isSucces;
+  bool get isSuccess => _isSuccess;
 }

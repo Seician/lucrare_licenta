@@ -8,8 +8,7 @@ class AppIcon extends StatelessWidget {
   final double iconSize;
 
   const AppIcon(
-      {super.key,
-      required this.icon,
+      {required this.icon,
       // we can't use dynamic variables here
       this.backgroundColor = const Color(0xFFfcf4e4),
       this.iconColor = const Color(0xFF756d54),

@@ -1,28 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../controllers/auth_controller.dart';
-import '../utils/colors.dart';
-import '../utils/dimensions.dart';
+import '../components/colors.dart';
 
 class CustomLoader extends StatelessWidget {
-  const CustomLoader({super.key});
-
   @override
   Widget build(BuildContext context) {
-    print("I am printing loading state" +
-        Get.find<AuthController>().isLoading.toString());
     return Center(
-      child: Container(
-        height: Dimensions.height20 * 5,
-        width: Dimensions.height20 * 5,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Dimensions.height20 * 5 / 2),
-          color: AppColors.mainColor,
-        ),
-        alignment: Alignment.center,
-        child: const CircularProgressIndicator(color: Colors.white),
-      ),
-    );
+        child: Container(
+      height: 100,
+      width: 100,
+      decoration: BoxDecoration(
+          color: AppColors.mainColor, borderRadius: BorderRadius.circular(50)),
+      alignment: Alignment.center,
+      child: CircularProgressIndicator(color: Colors.white),
+    ));
   }
 }
