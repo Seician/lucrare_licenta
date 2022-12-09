@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:shopping_app/base/custom_button.dart';
-import 'package:shopping_app/base/custom_snackbar.dart';
-import 'package:shopping_app/controllers/location_controller.dart';
-import 'package:shopping_app/models/address_model.dart';
 
+import '../../base/custom_button.dart';
+import '../../base/custom_snackbar.dart';
+import '../../controllers/location_controller.dart';
+import '../../models/address_model.dart';
 import '../../utils/app_dimensions.dart';
 import '../../utils/styles.dart';
 

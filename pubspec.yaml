@@ -17,7 +17,7 @@ dependencies:
   get: ^4.1.4
   intl: ^0.17.0
   http:
-  dots_indicator:
+  dots_indicator: ^2.0.0
   shared_preferences: ^2.0.11
   connectivity: ^3.0.6
   firebase_core: ^1.2.1
@@ -27,9 +27,9 @@ dependencies:
   path_provider: ^2.0.2
   url_strategy: ^0.2.0
   pin_code_fields: ^7.2.0
-  geolocator: ^7.1.0
-  geocoding: ^2.0.0
-  google_maps_flutter: ^2.0.6
+  geolocator: ^8.2.0
+  geocoding: ^2.0.4
+  google_maps_flutter: ^2.1.2
   shimmer_animation: ^2.0.0
   pointer_interceptor: ^0.9.0+1
   webview_flutter: ^2.0.9

@@ -26,8 +26,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
   late bool _isLoggedIn;
   CameraPosition _cameraPosition =
-      CameraPosition(target: LatLng(45.521563, -122.677433), zoom: 17);
-  late LatLng _initialPosition;
+      CameraPosition(target: LatLng(46.770439, 23.591423), zoom: 17);
+  late LatLng _initialPosition = LatLng(46.770439, 23.591423);
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       Get.find<UserController>().getUserInfo();
     }
     if (Get.find<LocationController>().addressList.isEmpty) {
-      _initialPosition = LatLng(45.521563, -122.677433);
+      _initialPosition = LatLng(46.770439, 23.591423);
     } else {
       if (Get.find<LocationController>().getUserAddress().address.isNotEmpty) {
         print("My address is " +
@@ -295,7 +295,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                         controller: _addressController,
                                         decoration: InputDecoration(
                                             hintText: "Delivery adddress",
-                                            prefixIcon: Icon(Icons.email,
+                                            prefixIcon: Icon(Icons.location_pin,
                                                 color: AppColors.yellowColor),
                                             focusedBorder: OutlineInputBorder(
                                                 borderRadius:
@@ -339,7 +339,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                             _contactPersonNameController,
                                         decoration: InputDecoration(
                                             hintText: "Contact person name",
-                                            prefixIcon: Icon(Icons.email,
+                                            prefixIcon: Icon(Icons.person,
                                                 color: AppColors.yellowColor),
                                             focusedBorder: OutlineInputBorder(
                                                 borderRadius:
@@ -383,7 +383,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                             _contactPersonNumberController,
                                         decoration: InputDecoration(
                                             hintText: "Contact person number",
-                                            prefixIcon: Icon(Icons.email,
+                                            prefixIcon: Icon(Icons.phone,
                                                 color: AppColors.yellowColor),
                                             focusedBorder: OutlineInputBorder(
                                                 borderRadius:

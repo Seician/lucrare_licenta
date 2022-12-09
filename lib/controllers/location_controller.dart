@@ -17,10 +17,24 @@ class LocationController extends GetxController implements GetxService {
   LocationController({required this.locationRepo});
   bool _loading = false;
 
-  late Position
-      _position; // = Position(longitude: 45.521563, latitude: -122.677433, timestamp: DateTime.now(), accuracy: 1, altitude: 1, heading: 1, speed: 1, speedAccuracy: 1);
-  late Position
-      _pickPosition; // = Position(longitude: 45.521563, latitude: -122.677433, timestamp: DateTime.now(), accuracy: 1, altitude: 1, heading: 1, speed: 1, speedAccuracy: 1);
+  late Position _position = Position(
+      longitude: 23.591423,
+      latitude: 46.770439,
+      timestamp: DateTime.now(),
+      accuracy: 1,
+      altitude: 1,
+      heading: 1,
+      speed: 1,
+      speedAccuracy: 1);
+  late Position _pickPosition = Position(
+      longitude: 23.591423,
+      latitude: 46.770439,
+      timestamp: DateTime.now(),
+      accuracy: 1,
+      altitude: 1,
+      heading: 1,
+      speed: 1,
+      speedAccuracy: 1);
   Placemark _placeMark = Placemark();
   Placemark _pickPlaceMark = Placemark();
   List<Marker> _markers = <Marker>[];
@@ -168,6 +182,7 @@ class LocationController extends GetxController implements GetxService {
 
     if (response.body['status'] == 'OK') {
       _address = response.body['results'][0]['formatted_address'].toString();
+      print("printing address " + _address);
     } else {
       print("error in the api");
     }
@@ -366,7 +381,9 @@ class LocationController extends GetxController implements GetxService {
   Map get getAddress => _getAddress;
   AddressModel getUserAddress() {
     late AddressModel _addressModel;
-
+    /* 
+       converting to map using json
+     */
     _getAddress = jsonDecode(locationRepo.getUserAddress());
 
     try {
