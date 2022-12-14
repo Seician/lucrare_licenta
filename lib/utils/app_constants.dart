@@ -6,18 +6,21 @@ class AppConstants {
   static const String STORE_PREFERENCE = 'Cart-list';
   //your base url
   //https://youtu.be/DjXS9W1HD9U here how to set up the admin panel
+
   static const String BASE_URL = "http://192.168.1.132:9000";
+
   static const String REGISTER_URI = '/api/v1/auth/register';
   static const String LOGIN_URI = '/api/v1/auth/login';
   static const String TOKEN_URI = '/api/v1/customer/cm-firebase-token';
   static const String TOPIC = 'all_zone_customer';
   static const String ZONE_ID = 'zoneId';
   static const String UPLOADS_URL = BASE_URL + '/uploads/';
-
+  static const String SEARCH_URI = '/api/v1/products/search';
   static const String USER_PASSWORD = 'user_password';
   static const String USER_ADDRESS = 'user_address';
   static const String USER_NUMBER = 'user_number';
   static const String USER_COUNTRY_CODE = 'user_country_code';
+  static const String UPDATE_ACCOUNT_URI = '/api/v1/customer/update-profile';
   static const String CUSTOMER_INFO_URI = '/api/v1/customer/info';
   static const String ADDRESS_LIST_URI = '/api/v1/customer/address/list';
   static const String ZONE_URI = '/api/v1/config/get-zone-id';
@@ -39,4 +42,8 @@ class AppConstants {
   static const String ORDER_DETAILS_URI =
       '/api/v1/customer/order/details?order_id=';
   static const String TRACK_URI = '/api/v1/customer/order/track?order_id=';
+  static const String SEARCH_LOCATION_URI =
+      '/api/v1/config/place-api-autocomplete';
+  static const String CONFIG_URI = '/api/v1/config';
+  static const String CART_LIST = 'cart_list';
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../utils/app_dimensions.dart';
-class NoDataScreen extends StatelessWidget {
 
+class NoDataScreen extends StatelessWidget {
   final String text;
   final String imgPath;
-  NoDataScreen({required this.text, this.imgPath="assets/image/empty_cart.png"});
+  NoDataScreen(
+      {required this.text, this.imgPath = "assets/image/empty_cart.png"});
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +16,23 @@ class NoDataScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-        Image.asset(
-          imgPath,
-          width: MediaQuery.of(context).size.height*0.22,
-          height: MediaQuery.of(context).size.height*0.22,
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height*0.03),
-        Text(
-          text,
-          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.0175,
-              color: Theme.of(context).disabledColor),/*robotoMedium.copyWith(fontSize:
+            Image.asset(
+              imgPath,
+              width: MediaQuery.of(context).size.height * 0.22,
+              height: MediaQuery.of(context).size.height * 0.22,
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+            Text(
+              text,
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.height * 0.0175,
+                  color: Theme.of(context).disabledColor),
+              /*robotoMedium.copyWith(fontSize:
           MediaQuery.of(context).size.height*0.0175,
               color: Theme.of(context).disabledColor)*/
-          textAlign: TextAlign.center,
-        ),
-
-      ]),
+              textAlign: TextAlign.center,
+            ),
+          ]),
     );
   }
 }

@@ -14,7 +14,7 @@ class ApiClient extends GetConnect implements GetxService {
 
   ApiClient({required this.sharedPreferences, required this.appBaseUrl}) {
     baseUrl = appBaseUrl;
-    timeout = Duration(seconds: 30);
+    // timeout = Duration(seconds: 5);
     token = sharedPreferences.getString(AppConstants.TOKEN) ?? "";
     _mainHeaders = {
       'Content-Type': 'application/json; charset=UTF-8',
@@ -40,7 +40,10 @@ class ApiClient extends GetConnect implements GetxService {
         uri,
         contentType: contentType,
         query: query,
-        headers: headers ?? _mainHeaders,
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token', //carrier
+        },
         decoder: decoder,
       );
       response = handleResponse(response);
@@ -49,31 +52,6 @@ class ApiClient extends GetConnect implements GetxService {
       return Response(statusCode: 1, statusText: e.toString());
     }
   }
-/*  Future<Response> getData(
-      String uri,
-      {Map<String, dynamic> query=const{},
-        String contentType='',
-        Map<String, String>? headers,
-      }
-      ) async {
-    print("print get uir "+uri.toString());
-    try {
-
-      Response response = await get(
-        uri,
-        contentType: contentType,
-        query: query,
-        headers:  headers??_mainHeaders,
-
-      );
-      print(response.body.toString());
-      response = handleResponse(response);
-
-      return response;
-    } catch (e) {
-      return Response(statusCode: 1, statusText: e.toString());
-    }
-  }*/
 
   Future<Response> postData(
     String uri,
@@ -106,13 +84,11 @@ class ApiClient extends GetConnect implements GetxService {
             statusCode: _response.statusCode,
             body: _response.body,
             statusText: "Error");
-        print("Errror " + _response.body.toString());
       } else if (_response.body.toString().startsWith('{message')) {
         _response = Response(
             statusCode: _response.statusCode,
             body: _response.body,
             statusText: _response.body['message']);
-        print("success" + _response.body);
       }
     } else if (_response.hasError && _response.body == null) {
       _response = Response(

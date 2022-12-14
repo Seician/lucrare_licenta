@@ -70,17 +70,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   },
                   onProgress: (int progress) {
                     print("WebView is loading (progress : $progress%)");
+                    print("url is " + selectedUrl.toString());
                   },
                   onPageStarted: (String url) {
-                    print('Page started loading: $url');
                     setState(() {
                       _isLoading = true;
                     });
-                    print("printing urls " + url.toString());
                     _redirect(url);
                   },
                   onPageFinished: (String url) {
-                    print('Page finished loading: $url');
                     setState(() {
                       _isLoading = false;
                     });

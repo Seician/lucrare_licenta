@@ -47,7 +47,8 @@ many times a certain time is found
       if (cartItemsPerOrder.containsKey(cartHistory[i].time)) {
         cartItemsPerOrder.update(cartHistory[i].time, (value) => ++value);
       } else {
-        cartItemsPerOrder.putIfAbsent(cartHistory[i].time, () => 1);
+        cartItemsPerOrder.putIfAbsent(
+            cartHistory[i].time ?? DateTime.now().toString(), () => 1);
       }
     }
     /*

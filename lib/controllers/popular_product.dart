@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../base/custom_snackbar.dart';
 import '../data/repository/popular_product_repo.dart';
 import '../models/product.dart';
 
@@ -29,6 +30,8 @@ class PopularProduct extends GetxController {
         //_popularPageSize = ProductModel.fromJson(response.body).totalSize;
         _isLoading = false;
         update();
+      } else {
+        showCustomSnackBar(response.statusText!);
       }
     } else {}
   }

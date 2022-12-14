@@ -16,8 +16,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 // ignore: public_member_api_docs
 void registerPlugins(Registrar registrar) {
   ConnectivityPlugin.registerWith(registrar);
-  FirebaseCoreWeb.registerWith(registrar);
-  FirebaseMessagingWeb.registerWith(registrar);
+
   GeolocatorPlugin.registerWith(registrar);
   SharedPreferencesPlugin.registerWith(registrar);
   registrar.registerMessageHandler();

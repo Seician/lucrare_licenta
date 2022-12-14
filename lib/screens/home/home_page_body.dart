@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 
 import '../../components/colors.dart';
 import '../../controllers/auth_controller.dart';
+import '../../controllers/location_controller.dart';
 import '../../controllers/popular_product.dart';
 import '../../controllers/product_controller.dart';
 import '../../controllers/user_controller.dart';
+import '../../routes/route_helper.dart';
 import '../../utils/app_dimensions.dart';
 import '../../widgets/big_text.dart';
 import '../../widgets/text_widget.dart';
@@ -27,7 +29,7 @@ class _HomePageBodyState extends State<HomePageBody> {
   @override
   void initState() {
     super.initState();
-
+    _loadResources(true);
     scrollController.addListener(() {
       setState(() {
         _scrollPosition = scrollController.position.pixels;
@@ -46,6 +48,12 @@ class _HomePageBodyState extends State<HomePageBody> {
     await Get.find<PopularProduct>().getPopularProductList(reload);
     if (Get.find<AuthController>().isLoggedIn()) {
       await Get.find<UserController>().getUserInfo();
+      await Get.find<LocationController>().getAddressList();
+      if (Get.find<LocationController>().addressList.isNotEmpty) {
+        var address = Get.find<LocationController>().addressList[0];
+        await Get.find<LocationController>().saveUserAddress(address);
+        print("I am in splash page ............");
+      }
     }
   }
 
@@ -83,11 +91,10 @@ class _HomePageBodyState extends State<HomePageBody> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      BigText(text: "Romania", color: AppColors.mainColor),
+                      BigText(text: "Bangladesh", color: AppColors.mainColor),
                       Row(
                         children: [
-                          TextWidget(
-                              text: "Cluj-Napoca", color: Colors.black54),
+                          TextWidget(text: "Narshingdi", color: Colors.black54),
                           Icon(
                             Icons.arrow_drop_down_rounded,
                           )
@@ -96,14 +103,18 @@ class _HomePageBodyState extends State<HomePageBody> {
                     ],
                   ),
                   Center(
-                    child: Container(
-                      width: Dimensions.iconBackSize,
-                      height: Dimensions.iconBackSize,
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.borderRadius15),
-                          color: AppColors.mainColor),
-                      child: Icon(Icons.search, color: Colors.white),
+                    child: GestureDetector(
+                      onTap: () => Get.toNamed(RouteHelper.getSearchRoute()),
+                      child: Container(
+                        width: Dimensions.iconBackSize,
+                        height: Dimensions.iconBackSize,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                                Dimensions.borderRadius15),
+                            color: AppColors.mainColor),
+                        child: Icon(Icons.search, color: Colors.white),
+                        //onTap: () => Get.toNamed(RouteHelper.getSearchRoute()),
+                      ),
                     ),
                   )
                 ],

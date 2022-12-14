@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../base/custom_image.dart';
 import '../../base/go_to_sign_in_page.dart';
 import '../../components/colors.dart';
 import '../../controllers/auth_controller.dart';
 import '../../controllers/cart_controller.dart';
 import '../../controllers/location_controller.dart';
+import '../../controllers/splash_controller.dart';
 import '../../controllers/user_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/app_dimensions.dart';
@@ -20,7 +22,6 @@ class AccountPage extends StatelessWidget {
     if (Get.find<LocationController>().addressList.isNotEmpty) {
       var address = Get.find<LocationController>().addressList[0];
       await Get.find<LocationController>().saveUserAddress(address);
-      print("I am in home page ............");
     } else {
       print("addresslist is empty");
     }
@@ -43,130 +44,144 @@ class AccountPage extends StatelessWidget {
         title: Text("Profile"),
         backgroundColor: AppColors.mainColor,
       ),
-      backgroundColor: Colors.white10,
+      // backgroundColor: Colors.white10,
       body: Container(
+        color: Colors.white10,
         margin: Dimensions.isWeb
             ? EdgeInsets.only(
                 left: Dimensions.MARGIN_SIZE_EXTRA_LARGE,
                 right: Dimensions.MARGIN_SIZE_EXTRA_LARGE)
             : EdgeInsets.all(0),
         child: GetBuilder<UserController>(builder: (userController) {
+          var path =
+              '${Get.find<SplashController>().configModel?.baseUrls?.customerImageUrl}'
+              '/${(Get.find<UserController>().userInfoModel != null && Get.find<AuthController>().isLoggedIn()) ? Get.find<UserController>().userInfoModel?.image : ''}';
           return (_isLoggedIn)
-              ? (userController.isLoading == true
-                  ? Column(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          width: 150,
-                          height: 150,
-                          child: Icon(
-                            Icons.person,
-                            size: 75,
-                            color: Colors.white,
-                          ),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(75),
-                              color: AppColors.mainColor),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Expanded(
-                          child: Scrollbar(
-                            child: SingleChildScrollView(
-                              physics: BouncingScrollPhysics(),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  AccountWidgets(
-                                      userController.userInfoModel.fName,
-                                      icon: Icons.person,
-                                      backgroundColor: AppColors.mainColor),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  AccountWidgets(
-                                      userController.userInfoModel.phone,
-                                      icon: Icons.phone,
-                                      backgroundColor: AppColors.yellowColor),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  AccountWidgets(
-                                      userController.userInfoModel.email,
-                                      icon: Icons.email,
-                                      backgroundColor: AppColors.yellowColor),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  GetBuilder<LocationController>(
-                                      builder: (locationController) {
-                                    if (_isLoggedIn &&
-                                        Get.find<LocationController>()
-                                            .addressList
-                                            .isEmpty) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          Get.toNamed(
-                                              RouteHelper.getAddAddressRoute());
-                                        },
-                                        child: AccountWidgets(
-                                            "Fil in your address",
-                                            icon: Icons.location_on,
-                                            backgroundColor:
-                                                AppColors.yellowColor),
-                                      );
-                                    } else {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          Get.toNamed(
-                                              RouteHelper.getAddAddressRoute());
-                                        },
-                                        child: AccountWidgets("Address",
-                                            icon: Icons.location_on,
-                                            backgroundColor:
-                                                AppColors.yellowColor),
-                                      );
-                                    }
-                                  }),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  AccountWidgets("none",
-                                      icon: Icons.message,
-                                      backgroundColor: Colors.redAccent),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  InkWell(
-                                      onTap: () {
-                                        if (Get.find<AuthController>()
-                                            .isLoggedIn()) {
-                                          Get.find<AuthController>()
-                                              .clearSharedData();
-                                          Get.find<CartController>()
-                                              .clearCartList();
-                                          Get.find<LocationController>()
-                                              .clearAddressList();
-                                          Get.offAllNamed(
-                                              RouteHelper.getInitialRoute());
-                                        }
-                                      },
-                                      child: AccountWidgets("Log out",
-                                          icon: Icons.logout,
-                                          backgroundColor: Colors.redAccent)),
-                                ],
+              ? Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      width: 150,
+                      height: 150,
+                      child: ClipOval(
+                          child: CustomImage(
+                        image: path,
+                        height: 150,
+                        width: 150,
+                        fit: BoxFit.cover,
+                        placeholder: '',
+                      )),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(75),
+                          color: AppColors.mainColor),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Expanded(
+                      child: Scrollbar(
+                        child: SingleChildScrollView(
+                          physics: BouncingScrollPhysics(),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 20,
                               ),
-                            ),
+                              AccountWidgets(
+                                  userController.userInfoModel!.fName,
+                                  icon: Icons.person,
+                                  backgroundColor: AppColors.mainColor),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              AccountWidgets(
+                                  userController.userInfoModel!.phone,
+                                  icon: Icons.phone,
+                                  backgroundColor: AppColors.yellowColor),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              AccountWidgets(
+                                  userController.userInfoModel!.email,
+                                  icon: Icons.email,
+                                  backgroundColor: AppColors.yellowColor),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              GetBuilder<LocationController>(
+                                  builder: (locationController) {
+                                if (_isLoggedIn &&
+                                    Get.find<LocationController>()
+                                        .addressList
+                                        .isEmpty) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(
+                                          RouteHelper.getAddAddressRoute());
+                                    },
+                                    child: AccountWidgets(
+                                        "Fill in your address",
+                                        icon: Icons.location_on,
+                                        backgroundColor: AppColors.yellowColor),
+                                  );
+                                } else {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(
+                                          RouteHelper.getAddAddressRoute());
+                                    },
+                                    child: AccountWidgets("Address",
+                                        icon: Icons.location_on,
+                                        backgroundColor: AppColors.yellowColor),
+                                  );
+                                }
+                              }),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              AccountWidgets("none",
+                                  icon: Icons.message,
+                                  backgroundColor: Colors.redAccent),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              InkWell(
+                                  onTap: () {
+                                    if (Get.find<AuthController>()
+                                        .isLoggedIn()) {
+                                      Get.find<AuthController>()
+                                          .clearSharedData();
+                                      Get.find<CartController>()
+                                          .clearCartList();
+                                      Get.find<LocationController>()
+                                          .clearAddressList();
+                                      Get.offAllNamed(
+                                          RouteHelper.getInitialRoute());
+                                    }
+                                  },
+                                  child: AccountWidgets("Log out",
+                                      icon: Icons.logout,
+                                      backgroundColor: Colors.redAccent)),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              InkWell(
+                                  onTap: () {
+                                    Get.offNamed(
+                                        RouteHelper.getUpdateProfile());
+                                  },
+                                  child: AccountWidgets("Edit",
+                                      icon: Icons.edit,
+                                      backgroundColor: Colors.redAccent)),
+                            ],
                           ),
-                        )
-                      ],
+                        ),
+                      ),
                     )
-                  : CircularProgressIndicator())
+                  ],
+                )
               : GoToSignInPage();
         }),
       ),

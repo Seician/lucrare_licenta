@@ -1,4 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,47 +30,6 @@ class AuthRepo {
     apiClient.token = token;
     apiClient.updateHeader(token);
     return await sharedPreferences.setString(AppConstants.TOKEN, token);
-  }
-
-  Future<Response> updateToken() async {
-    late String _deviceToken;
-    if (GetPlatform.isIOS) {
-      NotificationSettings settings =
-          await FirebaseMessaging.instance.requestPermission(
-        alert: true,
-        announcement: false,
-        badge: true,
-        carPlay: false,
-        criticalAlert: false,
-        provisional: false,
-        sound: true,
-      );
-      if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-        _deviceToken = await _saveDeviceToken();
-      }
-    } else {
-      _deviceToken = await _saveDeviceToken();
-    }
-    if (!GetPlatform.isWeb) {
-      FirebaseMessaging.instance.subscribeToTopic(AppConstants.TOPIC);
-    }
-    return await apiClient.postData(AppConstants.TOKEN_URI,
-        {"_method": "put", "cm_firebase_token": _deviceToken});
-  }
-
-  Future<String> _saveDeviceToken() async {
-    String _deviceToken = '';
-    if (!GetPlatform.isWeb) {
-      if (GetPlatform.isIOS) {
-        _deviceToken = (await FirebaseMessaging.instance.getAPNSToken())!;
-      } else {
-        _deviceToken = (await FirebaseMessaging.instance.getToken())!;
-      }
-    }
-    if (_deviceToken != null) {
-      print('--------Device Token---------- ' + _deviceToken);
-    }
-    return _deviceToken;
   }
 
   bool isLoggedIn() {

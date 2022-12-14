@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
+import '../../models/user_info_model.dart';
 import '../../utils/app_constants.dart';
 import '../api/api_client.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:io';
 class UserRepo {
   final ApiClient apiClient;
   UserRepo({required this.apiClient});
@@ -19,28 +22,30 @@ class UserRepo {
     });
     return await apiClient.postData(AppConstants.UPDATE_PROFILE_URI, _formData);
   }*/
-  /*
-  Future<http.StreamedResponse> updateProfile(UserInfoModel userInfoModel, PickedFile data, String token) async {
-    http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse('${AppConstants.BASE_URL}${AppConstants.UPDATE_PROFILE_URI}'));
-    request.headers.addAll(<String,String>{'Authorization': 'Bearer $token'});
-    if(GetPlatform.isMobile && data != null) {
+
+  Future<http.StreamedResponse> updateProfile(
+      UserInfoModel userInfoModel, PickedFile? data, String token) async {
+    http.MultipartRequest request = http.MultipartRequest(
+        'POST',
+        Uri.parse(
+            '${AppConstants.BASE_URL}${AppConstants.UPDATE_ACCOUNT_URI}'));
+    request.headers.addAll(<String, String>{'Authorization': 'Bearer $token'});
+    if (GetPlatform.isMobile && data != null) {
       File _file = File(data.path);
-      request.files.add(http.MultipartFile('image', _file.readAsBytes().asStream(), _file.lengthSync(), filename: _file.path.split('/').last));
-    }else if(GetPlatform.isWeb && data != null) {
-      Uint8List _list = await data.readAsBytes();
-      var part = http.MultipartFile('image', data.readAsBytes().asStream(), _list.length, filename: basename(data.path),
-          contentType: MediaType('image', 'jpg'));
-      request.files.add(part);
+      request.files.add(http.MultipartFile(
+          'image', _file.readAsBytes().asStream(), _file.lengthSync(),
+          filename: _file.path.split('/').last));
     }
     Map<String, String> _fields = Map();
     _fields.addAll(<String, String>{
-      'f_name': userInfoModel.fName, 'l_name': userInfoModel.lName, 'email': userInfoModel.email
+      'f_name': userInfoModel.fName,
+      'email': userInfoModel.email
     });
     request.fields.addAll(_fields);
     http.StreamedResponse response = await request.send();
     return response;
   }
-  */
+
   /*
   Future<Response> changePassword(UserInfoModel userInfoModel) async {
     return await apiClient.postData(AppConstants.UPDATE_PROFILE_URI, {'f_name': userInfoModel.fName, 'l_name': userInfoModel.lName,

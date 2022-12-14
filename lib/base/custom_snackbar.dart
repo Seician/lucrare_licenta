@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../components/colors.dart';
 import '../widgets/big_text.dart';
 
 void showCustomSnackBar(String message,
@@ -13,5 +14,6 @@ void showCustomSnackBar(String message,
       ),
       colorText: Colors.white,
       snackPosition: SnackPosition.TOP,
-      backgroundColor: Colors.redAccent);
+      backgroundColor:
+          isError ? Colors.redAccent : AppColors.mainColor.withOpacity(0.5));
 }

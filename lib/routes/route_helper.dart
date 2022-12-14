@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../base/go_to_sign_in_page.dart';
 import '../models/order_model.dart';
 import '../screens/account/account_page.dart';
+import '../screens/account/update_account_page.dart';
 import '../screens/address/add_address_page.dart';
 import '../screens/address/pick_map_screen.dart';
 import '../screens/auth/sign_in_page.dart';
@@ -13,6 +14,7 @@ import '../screens/checkout/payment_page.dart';
 import '../screens/food/detail_food.dart';
 import '../screens/food/more_food.dart';
 import '../screens/home/home_page.dart';
+import '../screens/search/seach_product_page.dart';
 import '../screens/splash/splash_screen.dart';
 
 class RouteHelper {
@@ -30,6 +32,8 @@ class RouteHelper {
   //payment route
   static const String payment = '/payment';
   static const String orderSuccess = '/order-successful';
+  static const String updateProfile = '/update-profile';
+  static const String search = '/search';
 
   static String getPickMapRoute(String page, bool canRoute) =>
       '$pickMap?page=$page&route=${canRoute.toString()}';
@@ -51,6 +55,9 @@ class RouteHelper {
       '$payment?id=$id&user=$user';
   static String getOrderSuccessRoute(String orderID, String status) =>
       '$orderSuccess?id=$orderID&status=$status';
+
+  static String getUpdateProfile() => '$updateProfile';
+  static String getSearchRoute() => '$search';
 
   static List<GetPage> routes = [
     GetPage(
@@ -139,5 +146,7 @@ class RouteHelper {
                   ? 1
                   : 0,
             )),
+    GetPage(name: updateProfile, page: () => UpdateAccountPage()),
+    GetPage(name: search, page: () => SearchScreen()),
   ];
 }

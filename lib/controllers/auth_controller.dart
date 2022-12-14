@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 
 import '../data/repository/auth_repo.dart';
@@ -26,9 +25,8 @@ class AuthController extends GetxController implements GetxService {
     Response response = await authRepo.registration(signUpBody);
     ResponseModel responseModel;
     if (response.statusCode == 200) {
-
-        authRepo.saveUserToken(response.body["token"]);
-        //await authRepo.updateToken();
+      authRepo.saveUserToken(response.body["token"]);
+      //await authRepo.updateToken();
 
       responseModel = ResponseModel(true, response.body["token"]);
     } else {
@@ -39,19 +37,16 @@ class AuthController extends GetxController implements GetxService {
     return responseModel;
   }
 
-
   Future<ResponseModel> login(String phone, String password) async {
     _isLoading = true;
     update();
     Response response = await authRepo.login(phone, password);
     ResponseModel responseModel;
     if (response.statusCode == 200) {
+      authRepo.saveUserToken(response.body['token']);
+      // await authRepo.updateToken();
 
-        authRepo.saveUserToken(response.body['token']);
-       // await authRepo.updateToken();
-
-      responseModel = ResponseModel(true,
-          response.body['token']);
+      responseModel = ResponseModel(true, response.body['token']);
     } else {
       responseModel = ResponseModel(false, response.statusText!);
     }
@@ -59,15 +54,19 @@ class AuthController extends GetxController implements GetxService {
     update();
     return responseModel;
   }
+
   bool clearSharedData() {
     return authRepo.clearSharedData();
   }
+
   void saveUserNumberAndPassword(String number, String password) {
     authRepo.saveUserNumberAndPassword(number, password);
   }
+
   bool isLoggedIn() {
     return authRepo.isLoggedIn();
   }
+
   String getUserToken() {
     return authRepo.getUserToken();
   }

@@ -22,8 +22,8 @@ class LocationRepo {
   }
 
   Future<Response> getAddressFromGeocode(LatLng latLng) async {
-    return await apiClient.getData(
-        '${AppConstants.GEOCODE_URI}?lat=${latLng.latitude}&lng=${latLng.longitude}');
+    return await apiClient.getData('${AppConstants.GEOCODE_URI}'
+        '?lat=${latLng.latitude}&lng=${latLng.longitude}');
   }
 
   Future<Response> removeAddressByID(int id) async {
@@ -43,6 +43,7 @@ class LocationRepo {
   }
 
   Future<bool> saveUserAddress(String address) async {
+    print("setting " + address);
     apiClient.updateHeader(sharedPreferences.getString(AppConstants.TOKEN)!);
     return await sharedPreferences.setString(
         AppConstants.USER_ADDRESS, address);
@@ -57,5 +58,10 @@ class LocationRepo {
   Future<Response> getPlaceDetails(String placeID) async {
     return await apiClient
         .getData('${AppConstants.PLACE_DETAILS_URI}?placeid=$placeID');
+  }
+
+  Future<Response> searchLocation(String text) async {
+    return await apiClient
+        .getData('${AppConstants.SEARCH_LOCATION_URI}?search_text=$text');
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:shopping_app/models/order_model.dart';
 import 'package:shopping_app/models/place_order.dart';
@@ -19,7 +18,7 @@ class OrderController extends GetxController implements GetxService {
   bool _showCancelled = false;
   String _orderType = 'delivery';
 
-   double? _distance;
+  double? _distance;
 
   List<OrderModel> get runningOrderList => _runningOrderList;
   List<OrderModel> get historyOrderList => _historyOrderList;
@@ -30,11 +29,11 @@ class OrderController extends GetxController implements GetxService {
   bool get showCancelled => _showCancelled;
   String get orderType => _orderType;
 
-  double get distance => _distance??0.0;
+  double get distance => _distance ?? 0.0;
 
   Future<void> getOrderList() async {
     print("before the method getOrderList");
-    _isLoading=true;
+    _isLoading = true;
     Response response = await orderRepo.getOrderList();
     if (response.statusCode == 200) {
       print("found order list");
@@ -42,23 +41,26 @@ class OrderController extends GetxController implements GetxService {
       _historyOrderList = [];
       response.body.forEach((order) {
         OrderModel orderModel = OrderModel.fromJson(order);
-        if(orderModel.orderStatus == 'pending' || orderModel.orderStatus == 'accepted' || orderModel.orderStatus == 'confirmed'
-            || orderModel.orderStatus == 'processing' || orderModel.orderStatus == 'handover' || orderModel.orderStatus == 'picked_up') {
+        if (orderModel.orderStatus == 'pending' ||
+            orderModel.orderStatus == 'accepted' ||
+            orderModel.orderStatus == 'confirmed' ||
+            orderModel.orderStatus == 'processing' ||
+            orderModel.orderStatus == 'handover' ||
+            orderModel.orderStatus == 'picked_up') {
           _runningOrderList.add(orderModel);
           print("I am adding to list");
-        }else {
+        } else {
           _historyOrderList.add(orderModel);
           print("I did not get added to list");
         }
       });
-    }else{
+    } else {
       _runningOrderList = [];
       _historyOrderList = [];
     }
-    _isLoading=false;
+    _isLoading = false;
     update();
   }
-
 
   void setPaymentMethod(int index) {
     _paymentMethodIndex = index;
@@ -88,10 +90,11 @@ class OrderController extends GetxController implements GetxService {
     return _responseModel;
   }*/
 
-  Future<void> placeOrder(PlaceOrderBody placeOrderBody, Function callback) async {
+  Future<void> placeOrder(
+      PlaceOrderBody placeOrderBody, Function callback) async {
     _isLoading = true;
     update();
-   // print(placeOrderBody.toJson());
+    // print(placeOrderBody.toJson());
     print("repo sending through");
     Response response = await orderRepo.placeOrder(placeOrderBody);
     print("repo went through");
@@ -125,9 +128,9 @@ class OrderController extends GetxController implements GetxService {
     _isLoading = false;
     Get.back();
     if (response.statusCode == 200) {
-     late OrderModel orderModel;
-      for(OrderModel order in _runningOrderList) {
-        if(order.id == orderID) {
+      late OrderModel orderModel;
+      for (OrderModel order in _runningOrderList) {
+        if (order.id == orderID) {
           orderModel = order;
           break;
         }
@@ -144,17 +147,8 @@ class OrderController extends GetxController implements GetxService {
 
   void setOrderType(String type, {bool notify = true}) {
     _orderType = type;
-    if(notify) {
+    if (notify) {
       update();
     }
   }
-
-
-
-
-
-
-
-
-
 }

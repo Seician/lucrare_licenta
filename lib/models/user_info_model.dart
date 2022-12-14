@@ -1,22 +1,22 @@
 class UserInfoModel {
-  int id;
+  int? id;
   String fName;
   String email;
   String image;
   String phone;
-  String password;
+  String? password;
   int orderCount;
-  int memberSinceDays;
+  int? memberSinceDays;
 
   UserInfoModel(
-      {required this.id,
+      {this.id,
       required this.fName,
       required this.email,
       this.image = "",
       required this.phone,
-      required this.password,
+      this.password,
       this.orderCount = 0,
-      required this.memberSinceDays});
+      this.memberSinceDays});
 
   factory UserInfoModel.fromJson(Map<String, dynamic> json) {
     return UserInfoModel(
@@ -33,7 +33,7 @@ class UserInfoModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
+    //data['id'] = this.id;
     data['f_name'] = this.fName;
     data['email'] = this.email;
     data['image'] = this.image;

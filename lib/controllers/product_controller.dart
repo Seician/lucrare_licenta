@@ -4,6 +4,7 @@ import 'package:shopping_app/components/colors.dart';
 import 'package:shopping_app/controllers/cart_controller.dart';
 import 'package:shopping_app/models/product.dart';
 
+import '../base/custom_snackbar.dart';
 import '../data/repository/product_repo.dart';
 
 class ProductController extends GetxController {
@@ -49,6 +50,8 @@ class ProductController extends GetxController {
             _popularProductList.length.toString());
         _isLoading = true;
         update();
+      } else {
+        showCustomSnackBar(response.statusText!);
       }
     } else {}
   }

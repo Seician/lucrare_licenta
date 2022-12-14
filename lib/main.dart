@@ -6,12 +6,12 @@ import 'components/colors.dart';
 import 'controllers/cart_controller.dart';
 import 'controllers/popular_product.dart';
 import 'controllers/product_controller.dart';
-import 'helper/dependencies.dart' as di;
+import 'helper/dependencies.dart' as dep;
 import 'routes/route_helper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await di.init();
+  await dep.init();
   runApp(MyApp());
 }
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           scrollBehavior: AppScrollBehavior(),
           debugShowCheckedModeBanner: false,
-          title: 'Lucrare Licenta',
+          title: 'Flutter Demo',
           theme: ThemeData(
             primaryColor: AppColors.mainColor,
             fontFamily: "Lato",

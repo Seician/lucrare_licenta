@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,7 @@ import '../../controllers/cart_controller.dart';
 import '../../controllers/location_controller.dart';
 import '../../controllers/popular_product.dart';
 import '../../controllers/product_controller.dart';
+import '../../controllers/splash_controller.dart';
 import '../../controllers/user_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/app_dimensions.dart';
@@ -23,9 +25,12 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController _controller;
+  GlobalKey<ScaffoldState> _globalKey = GlobalKey();
+  late StreamSubscription<ConnectivityResult> _onConnectivityChanged;
   @override
   dispose() {
     _controller.dispose();
+    _onConnectivityChanged.cancel();
     super.dispose();
   }
 
@@ -51,19 +56,67 @@ class _SplashScreenState extends State<SplashScreen>
 
   void initState() {
     super.initState();
-    _loadResources(true);
-    _removeResource();
+    bool _firstTime = true;
+    _onConnectivityChanged = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      if (!_firstTime) {
+        print("second time");
+        bool isNotConnected = result != ConnectivityResult.wifi &&
+            result != ConnectivityResult.mobile;
+        isNotConnected
+            ? SizedBox()
+            : ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: isNotConnected ? Colors.red : Colors.green,
+          duration: Duration(seconds: isNotConnected ? 6000 : 3),
+          content: Text(
+            isNotConnected ? 'no_connection' : 'connected',
+            textAlign: TextAlign.center,
+          ),
+        ));
+        if (!isNotConnected) {
+          Timer(Duration(seconds: 3),
+              () => Get.offNamed(RouteHelper.getInitialRoute()));
+        }
+      }
+      _firstTime = false;
+    });
+
+    //_loadResources(true);
+    // _removeResource();
     _controller =
         new AnimationController(vsync: this, duration: Duration(seconds: 2))
           ..forward();
     animation = new CurvedAnimation(parent: _controller, curve: Curves.linear);
-    Timer(Duration(seconds: 3),
-        () => Get.offNamed(RouteHelper.getInitialRoute()));
+    _route();
+  }
+
+  void _route() {
+    Get.find<SplashController>().getConfigData().then((isSuccess) {
+      if (isSuccess) {
+        Timer(Duration(seconds: 3), () async {
+          int _minimumVersion = 0;
+
+          if (Get.find<AuthController>().isLoggedIn()) {
+            // Get.find<AuthController>().updateToken();
+
+            Get.offNamed(RouteHelper.getInitialRoute());
+            print("my image is " +
+                '${Get.find<SplashController>().configModel?.baseUrls?.customerImageUrl}'
+                    '/${(Get.find<UserController>().userInfoModel != null && Get.find<AuthController>().isLoggedIn()) ? Get.find<UserController>().userInfoModel?.image : ''}');
+          } else {
+            Get.offNamed(RouteHelper.getSignInRoute());
+          }
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _globalKey,
       backgroundColor: Colors.white,
       body: Column(
         //crossAxisAlignment: CrossAxisAlignment.center,

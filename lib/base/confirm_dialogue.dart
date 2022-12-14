@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:get/get.dart';
 
 import '../data/repository/order_controller.dart';
 import '../utils/app_dimensions.dart';

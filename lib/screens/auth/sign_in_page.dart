@@ -101,8 +101,8 @@ class _SignInPageState extends State<SignInPage> {
                                 borderRadius: BorderRadius.circular(15),
                                 boxShadow: [
                                   BoxShadow(
-                                      blurRadius: 10,
-                                      spreadRadius: 7,
+                                      blurRadius: 3,
+                                      spreadRadius: 1,
                                       offset: Offset(1, 1),
                                       color: Colors.grey.withOpacity(0.2))
                                 ]),

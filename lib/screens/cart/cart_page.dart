@@ -497,12 +497,12 @@ class CartPage extends StatelessWidget {
                                               contactPersonName:
                                                   location.contactPersonName ??
                                                       Get.find<UserController>()
-                                                          .userInfoModel
+                                                          .userInfoModel!
                                                           .fName,
                                               contactPersonNumber: location
                                                       .contactPersonNumber ??
                                                   Get.find<UserController>()
-                                                      .userInfoModel
+                                                      .userInfoModel!
                                                       .phone,
                                               scheduleAt: '',
                                               distance: 10,
@@ -556,25 +556,17 @@ class CartPage extends StatelessWidget {
   void _callback(bool isSuccess, String message, String orderID) async {
     if (isSuccess) {
       Get.find<CartController>().clearCartList();
-
       Get.find<OrderController>().stopLoader();
       if (Get.find<OrderController>().paymentMethodIndex == 1) {
-        //Get.offNamed(RouteHelper.getOrderSuccessRoute(orderID, 'success'));
-        //Get.offNamed(RouteHelper.getInitialRoute());
         Get.offNamed(RouteHelper.getPaymentRoute(
-            orderID, Get.find<UserController>().userInfoModel.id));
+            orderID, Get.find<UserController>().userInfoModel!.id!));
       } else {
         if (GetPlatform.isWeb) {
           Get.back();
-          // String hostname = html.window.location.hostname;
-          // String protocol = html.window.location.protocol;
-          // String selectedUrl = '${AppConstants.BASE_URL}/payment-mobile?order_id=$orderID&&customer_id=${Get.find<UserController>()
-          //   .userInfoModel.id}&&callback=$protocol//$hostname${RouteHelper.orderSuccess}?id=$orderID&status=';
-          //html.window.open(selectedUrl,"_self");
         } else {
           print("working fine");
           Get.offNamed(RouteHelper.getPaymentRoute(
-              orderID, Get.find<UserController>().userInfoModel.id));
+              orderID, Get.find<UserController>().userInfoModel!.id!));
         }
       }
     } else {
