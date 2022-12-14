@@ -4,7 +4,10 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
    <application
         android:label="shopping_app"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        >
+        
         <meta-data android:name="com.google.android.geo.API_KEY"
                    android:value="AIzaSyDA0Pq-eTr8nAWUMtVDjHyCN6kiFia6uro"/>
         <activity

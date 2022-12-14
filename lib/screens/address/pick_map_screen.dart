@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:shopping_app/screens/address/widgets/search_location_dialogue_page.dart';
 
 import '../../base/custom_button.dart';
 import '../../base/custom_snackbar.dart';
@@ -16,6 +17,7 @@ class PickMapScreen extends StatefulWidget {
   final bool canRoute;
   final String route;
   final GoogleMapController? googleMapController;
+
   PickMapScreen(
       {required this.fromSignUp,
       required this.fromAddAddress,
@@ -113,12 +115,13 @@ class _PickMapScreenState extends State<PickMapScreen> {
                     ? Image.asset("assets/image/pick_marker.png",
                         height: 50, width: 50)
                     : CircularProgressIndicator()),
+            //showing and selecting address
             Positioned(
               top: Dimensions.PADDING_SIZE_LARGE,
               left: Dimensions.PADDING_SIZE_SMALL,
               right: Dimensions.PADDING_SIZE_SMALL,
               child: InkWell(
-                //onTap: () => Get.dialog(LocationSearchDialog(mapController: _mapController)),
+                   onTap: () => Get.dialog(LocationDialogue(mapController: _mapController)),
                 child: Container(
                   height: 50,
                   padding: EdgeInsets.symmetric(

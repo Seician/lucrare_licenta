@@ -41,6 +41,11 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       _initialPosition = LatLng(46.770439, 23.591423);
     } else {
       if (Get.find<LocationController>().getUserAddress().address.isNotEmpty) {
+
+        if (Get.find<LocationController>().getUserAddressFromLocalStorage() == "") {
+          Get.find<LocationController>()
+              .saveUserAddress(Get.find<LocationController>().addressList.last);
+        }
         print("My address is " +
             Get.find<LocationController>().getUserAddress().address);
         print("Lat is " +

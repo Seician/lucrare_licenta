@@ -206,11 +206,14 @@ class LocationController extends GetxController implements GetxService {
       _inZone = false;
       _responseModel = ResponseModel(false, response.statusText!);
     }
+    print("zone response code is " + response.statusCode.toString());
     if (markerLoad) {
       _loading = false;
     } else {
       _isLoading = false;
     }
+    print("Response Code");
+    print(response.statusCode);
     update();
     return _responseModel;
   }
@@ -268,6 +271,7 @@ class LocationController extends GetxController implements GetxService {
             position.target.latitude.toString(),
             position.target.longitude.toString(),
             true);
+        /* if button value is false we are in the service area*/
         _buttonDisabled = !_responseModel.isSuccess;
         if (_changeAddress) {
           /* if (!GetPlatform.isWeb) {
@@ -335,6 +339,10 @@ class LocationController extends GetxController implements GetxService {
   void clearAddressList() {
     _addressList = [];
     update();
+  }
+
+  String getUserAddressFromLocalStorage() {
+    return locationRepo.getUserAddress();
   }
 
   void filterAddresses(String queryText) {
