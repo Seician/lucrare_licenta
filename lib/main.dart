@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             primaryColor: AppColors.mainColor,
             fontFamily: "Lato",
           ),
-          initialRoute: RouteHelper.getSplashRoute(),
+          initialRoute: RouteHelper.getInitialRoute(),
           getPages: RouteHelper.routes,
           defaultTransition: Transition.topLevel,
         );
