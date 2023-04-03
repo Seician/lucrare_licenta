@@ -651,24 +651,24 @@ class _SearchResultWidgetState extends State<SearchResultWidget>
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
+                                                      // IconAndTextWidget(
+                                                      //   text: "Normal",
+                                                      //   color:
+                                                      //       AppColors.textColor,
+                                                      //   icon: Icons.circle,
+                                                      //   iconColor: AppColors
+                                                      //       .iconColor1,
+                                                      // ),
+                                                      // IconAndTextWidget(
+                                                      //   text: "17km",
+                                                      //   color:
+                                                      //       AppColors.textColor,
+                                                      //   icon: Icons.location_on,
+                                                      //   iconColor:
+                                                      //       AppColors.mainColor,
+                                                      // ),
                                                       IconAndTextWidget(
-                                                        text: "Normal",
-                                                        color:
-                                                            AppColors.textColor,
-                                                        icon: Icons.circle,
-                                                        iconColor: AppColors
-                                                            .iconColor1,
-                                                      ),
-                                                      IconAndTextWidget(
-                                                        text: "17km",
-                                                        color:
-                                                            AppColors.textColor,
-                                                        icon: Icons.location_on,
-                                                        iconColor:
-                                                            AppColors.mainColor,
-                                                      ),
-                                                      IconAndTextWidget(
-                                                        text: "32min",
+                                                        text: "Timp de preparare: 25min",
                                                         color:
                                                             AppColors.textColor,
                                                         icon: Icons

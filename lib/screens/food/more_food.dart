@@ -196,7 +196,7 @@ class MoreFood extends StatelessWidget {
               SizedBox(width: 40),
               GetBuilder<ProductController>(builder: (_) {
                 return BigText(
-                  text: "\$12.88 " +
+                  text: productItem.price.toString() +
                       " X " +
                       Get.find<ProductController>().certainItems.toString(),
                   color: AppColors.mainBlackColor,
@@ -267,7 +267,7 @@ class MoreFood extends StatelessWidget {
                         Get.find<ProductController>().addItem(productItem);
                       },
                       child: BigText(
-                        text: "\$ 28 | Add to cart",
+                        text: "Adaugă în coș",
                         color: Colors.white,
                       ),
                     ),

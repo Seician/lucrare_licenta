@@ -92,8 +92,9 @@ class ItemView extends StatelessWidget {
                                             height: Dimensions.padding10,
                                           ),
                                           TextWidget(
-                                              text:
-                                                  "With chinese characteristics",
+                                              text: searchController
+                                                  .searchProductList![index]
+                                                  .title,
                                               color: AppColors.textColor),
                                           SizedBox(
                                             height: Dimensions.padding10,
@@ -102,20 +103,21 @@ class ItemView extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
+                                              // IconAndTextWidget(
+                                              //   text: "Normal",
+                                              //   color: AppColors.textColor,
+                                              //   icon: Icons.circle,
+                                              //   iconColor: AppColors.iconColor1,
+                                              // ),
+                                              // IconAndTextWidget(
+                                              //   text: "17km",
+                                              //   color: AppColors.textColor,
+                                              //   icon: Icons.location_on,
+                                              //   iconColor: AppColors.mainColor,
+                                              // ),
                                               IconAndTextWidget(
-                                                text: "Normal",
-                                                color: AppColors.textColor,
-                                                icon: Icons.circle,
-                                                iconColor: AppColors.iconColor1,
-                                              ),
-                                              IconAndTextWidget(
-                                                text: "17km",
-                                                color: AppColors.textColor,
-                                                icon: Icons.location_on,
-                                                iconColor: AppColors.mainColor,
-                                              ),
-                                              IconAndTextWidget(
-                                                text: "32min",
+                                                text:
+                                                    "Timp de preparare: 32min",
                                                 color: AppColors.textColor,
                                                 icon: Icons.access_time_rounded,
                                                 iconColor: AppColors.iconColor2,

@@ -41,7 +41,7 @@ class AccountPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile"),
+        title: Text("Profil"),
         backgroundColor: AppColors.mainColor,
       ),
       // backgroundColor: Colors.white10,
@@ -122,7 +122,7 @@ class AccountPage extends StatelessWidget {
                                           RouteHelper.getAddAddressRoute());
                                     },
                                     child: AccountWidgets(
-                                        "Fill in your address",
+                                        "Conpletează-ți adresa",
                                         icon: Icons.location_on,
                                         backgroundColor: AppColors.yellowColor),
                                   );
@@ -132,7 +132,7 @@ class AccountPage extends StatelessWidget {
                                       Get.toNamed(
                                           RouteHelper.getAddAddressRoute());
                                     },
-                                    child: AccountWidgets("Address",
+                                    child: AccountWidgets("Adresă",
                                         icon: Icons.location_on,
                                         backgroundColor: AppColors.yellowColor),
                                   );
@@ -141,9 +141,9 @@ class AccountPage extends StatelessWidget {
                               SizedBox(
                                 height: 20,
                               ),
-                              AccountWidgets("none",
-                                  icon: Icons.message,
-                                  backgroundColor: Colors.redAccent),
+                              // AccountWidgets("none",
+                              //     icon: Icons.message,
+                              //     backgroundColor: Colors.redAccent),
                               SizedBox(
                                 height: 20,
                               ),
@@ -161,7 +161,7 @@ class AccountPage extends StatelessWidget {
                                           RouteHelper.getInitialRoute());
                                     }
                                   },
-                                  child: AccountWidgets("Log out",
+                                  child: AccountWidgets("Iesire",
                                       icon: Icons.logout,
                                       backgroundColor: Colors.redAccent)),
                               SizedBox(
@@ -172,7 +172,7 @@ class AccountPage extends StatelessWidget {
                                     Get.offNamed(
                                         RouteHelper.getUpdateProfile());
                                   },
-                                  child: AccountWidgets("Edit",
+                                  child: AccountWidgets("Editare",
                                       icon: Icons.edit,
                                       backgroundColor: Colors.redAccent)),
                             ],

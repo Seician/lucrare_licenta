@@ -154,9 +154,9 @@ class _MainFoodPageState extends State<MainFoodPage> {
                               SizedBox(
                                 width: 10,
                               ),
-                              TextWidget(
-                                  text: "1287 comments",
-                                  color: Color(0xFFccc7c5))
+                              // TextWidget(
+                              //     text: "1287 comments",
+                              //     color: Color(0xFFccc7c5))
                             ],
                           ),
                           SizedBox(
@@ -165,20 +165,20 @@ class _MainFoodPageState extends State<MainFoodPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              // IconAndTextWidget(
+                              //   text: "Normal",
+                              //   color: AppColors.textColor,
+                              //   icon: Icons.circle_sharp,
+                              //   iconColor: AppColors.iconColor1,
+                              // ),
+                              // IconAndTextWidget(
+                              //   text: "1.7km",
+                              //   color: AppColors.textColor,
+                              //   icon: Icons.location_on,
+                              //   iconColor: AppColors.mainColor,
+                              // ),
                               IconAndTextWidget(
-                                text: "Normal",
-                                color: AppColors.textColor,
-                                icon: Icons.circle_sharp,
-                                iconColor: AppColors.iconColor1,
-                              ),
-                              IconAndTextWidget(
-                                text: "1.7km",
-                                color: AppColors.textColor,
-                                icon: Icons.location_on,
-                                iconColor: AppColors.mainColor,
-                              ),
-                              IconAndTextWidget(
-                                text: "32min",
+                                text: "Timp de preparare: 20 min",
                                 color: AppColors.textColor,
                                 icon: Icons.access_time_rounded,
                                 iconColor: AppColors.iconColor2,
@@ -344,35 +344,36 @@ class _MainFoodPageState extends State<MainFoodPage> {
                                         height: Dimensions.padding10,
                                       ),
                                       TextWidget(
-                                          text: "With chinese characteristics",
+                                          text: popularProducts
+                                              .popularProductList[index].title,
                                           color: AppColors.textColor),
                                       SizedBox(
                                         height: Dimensions.padding10,
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          IconAndTextWidget(
-                                            text: "Normal",
-                                            color: AppColors.textColor,
-                                            icon: Icons.circle,
-                                            iconColor: AppColors.iconColor1,
-                                          ),
-                                          IconAndTextWidget(
-                                            text: "17km",
-                                            color: AppColors.textColor,
-                                            icon: Icons.location_on,
-                                            iconColor: AppColors.mainColor,
-                                          ),
-                                          IconAndTextWidget(
-                                            text: "32min",
-                                            color: AppColors.textColor,
-                                            icon: Icons.access_time_rounded,
-                                            iconColor: AppColors.iconColor2,
-                                          )
-                                        ],
+                                      // Row(
+                                      //   mainAxisAlignment:
+                                      //       MainAxisAlignment.spaceBetween,
+                                      //   children: [
+                                      //     IconAndTextWidget(
+                                      //       text: "Normal",
+                                      //       color: AppColors.textColor,
+                                      //       icon: Icons.circle,
+                                      //       iconColor: AppColors.iconColor1,
+                                      //     ),
+                                      //     IconAndTextWidget(
+                                      //       text: "17km",
+                                      //       color: AppColors.textColor,
+                                      //       icon: Icons.location_on,
+                                      //       iconColor: AppColors.mainColor,
+                                      //     ),
+                                      IconAndTextWidget(
+                                        text: "Timp de preparare: 20 min",
+                                        color: AppColors.textColor,
+                                        icon: Icons.access_time_rounded,
+                                        iconColor: AppColors.iconColor2,
                                       )
+                                      //   ],
+                                      // )
                                     ],
                                   ),
                                 ),

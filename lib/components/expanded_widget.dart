@@ -60,7 +60,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       new TextWidget(
-                        text: flag ? "Show more" : "Show less",
+                        text: flag ? "Arată mai mult" : "Arată mai puțin",
                         color: AppColors.mainColor,
                         size: 14,
                       ),
