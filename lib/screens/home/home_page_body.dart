@@ -91,10 +91,10 @@ class _HomePageBodyState extends State<HomePageBody> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      BigText(text: "Bangladesh", color: AppColors.mainColor),
+                      BigText(text: "Restaurantul Tău Preferat", color: AppColors.mainColor),
                       Row(
                         children: [
-                          TextWidget(text: "Narshingdi", color: Colors.black54),
+                          TextWidget(text: "Comandă-ți Mâncarea Favorită", color: Colors.black54),
                           Icon(
                             Icons.arrow_drop_down_rounded,
                           )
