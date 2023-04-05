@@ -51,12 +51,12 @@ class _SignInPageState extends State<SignInPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Hello",
+                            "Salut",
                             style: TextStyle(
                                 fontSize: 70, fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            "Sign into your account",
+                            "Intră în cont!",
                             style: TextStyle(
                                 fontSize: 20, color: Colors.grey[500]),
                           ),
@@ -77,7 +77,7 @@ class _SignInPageState extends State<SignInPage> {
                             child: TextField(
                               controller: _phoneController,
                               decoration: InputDecoration(
-                                  hintText: "Phone",
+                                  hintText: "Telefon",
                                   prefixIcon: Icon(Icons.mobile_screen_share,
                                       color: AppColors.mainColor),
                                   focusedBorder: OutlineInputBorder(
@@ -110,7 +110,7 @@ class _SignInPageState extends State<SignInPage> {
                               controller: _passwordController,
                               obscureText: true,
                               decoration: InputDecoration(
-                                  hintText: "Password",
+                                  hintText: "Parolă",
                                   prefixIcon: Icon(Icons.password,
                                       color: AppColors.mainColor),
                                   focusedBorder: OutlineInputBorder(
@@ -134,7 +134,7 @@ class _SignInPageState extends State<SignInPage> {
                                 child: Container(),
                               ),
                               Text(
-                                "Sign into your account",
+                                "Intră în cont",
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.grey[500]),
                               )
@@ -158,9 +158,9 @@ class _SignInPageState extends State<SignInPage> {
                             color: AppColors.mainColor),
                         child: Center(
                           child: BigText(
-                            text: 'Sign in',
+                            text: 'Inregistrează-te',
                             color: Colors.white,
-                            size: 30,
+                            size: 20,
                           ),
                         ),
                       ),
@@ -168,12 +168,12 @@ class _SignInPageState extends State<SignInPage> {
                     SizedBox(height: w * 0.15),
                     RichText(
                         text: TextSpan(
-                            text: "Don\'t have an account?",
+                            text: "Incă nu ai cont?",
                             style: TextStyle(
                                 color: Colors.grey[500], fontSize: 20),
                             children: [
                           TextSpan(
-                              text: " Create",
+                              text: " Creează",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
@@ -196,11 +196,11 @@ class _SignInPageState extends State<SignInPage> {
     bool _isValid = GetPlatform.isWeb ? true : false;
 
     if (_phone.isEmpty) {
-      Get.snackbar("Phone", "Type in your phone");
+      Get.snackbar("Telefon", "Introdu numărul tău de telefon");
     } else if (_password.isEmpty) {
-      Get.snackbar("Password", "Type in your password");
+      Get.snackbar("Parolă", "Introdu parola");
     } else if (_password.length < 6) {
-      Get.snackbar("Password", "More than 6");
+      Get.snackbar("Parolă", "Mai mult de 6 caractere");
     } else {
       authController.login(_phone, _password).then((status) async {
         if (status.isSuccess) {

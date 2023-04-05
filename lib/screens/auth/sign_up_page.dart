@@ -70,21 +70,21 @@ class SignUpPage extends StatelessWidget {
                               height: 20,
                             ),
                             AppTextField(
-                                hintText: "Password",
+                                hintText: "Parolă",
                                 textController: passwordController,
                                 icon: Icons.password_sharp),
                             SizedBox(
                               height: 20,
                             ),
                             AppTextField(
-                                hintText: "Phone",
+                                hintText: "Telefon",
                                 textController: phoneController,
                                 icon: Icons.phone),
                             SizedBox(
                               height: 20,
                             ),
                             AppTextField(
-                                hintText: "Name",
+                                hintText: "Nume",
                                 textController: nameController,
                                 icon: Icons.person),
                             SizedBox(
@@ -108,8 +108,8 @@ class SignUpPage extends StatelessWidget {
                               color: AppColors.mainColor),
                           child: Center(
                             child: BigText(
-                              text: "Sign up",
-                              size: 30,
+                              text: "Creează cont",
+                              size: 20,
                               color: Colors.white,
                             ),
                           ),
@@ -122,13 +122,13 @@ class SignUpPage extends StatelessWidget {
                           text: TextSpan(
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () => Get.back(),
-                              text: "Have an account?",
+                              text: "Ai deja un cont?",
                               style: TextStyle(
                                   fontSize: 20, color: Colors.grey[500]))),
                       SizedBox(height: w * 0.08),
                       RichText(
                           text: TextSpan(
-                        text: "Sign up using one of the following methods",
+                        text: "Inregistrează-te folosind următoarele metode:",
                         style: TextStyle(color: Colors.grey[500], fontSize: 16),
                       )),
                       Wrap(
@@ -165,18 +165,19 @@ class SignUpPage extends StatelessWidget {
     String _password = passwordController.text.trim();
 
     if (_firstName.isEmpty) {
-      showCustomSnackBar("Type in your name", title: "Name");
+      showCustomSnackBar("Introdu numele", title: "Nume");
     } else if (_email.isEmpty) {
-      showCustomSnackBar("Type in your Email", title: "Email");
+      showCustomSnackBar("Introdu adresa de email", title: "Email");
     } else if (!GetUtils.isEmail(_email)) {
-      showCustomSnackBar("Type in correct Email", title: "Email");
+      showCustomSnackBar("Introdu o adresă de email validă", title: "Email");
     } else if (_number.isEmpty) {
-      showCustomSnackBar("Type in your Phone Number", title: "Phone Number");
+      showCustomSnackBar("Introdu numărul de telefon",
+          title: "Număr de telefon");
     } else if (_password.isEmpty) {
-      showCustomSnackBar("Type in your Password", title: "Password");
+      showCustomSnackBar("Introdu parola", title: "Parola");
     } else if (_password.length < 6) {
-      showCustomSnackBar("Type in equal or more than 6 characters",
-          title: "Password");
+      showCustomSnackBar("Parola trebuie sa aibă minim 6 caractere",
+          title: "Parolă");
     } else {
       SignUpBody signUpBody = SignUpBody(
           fName: _firstName,
@@ -188,7 +189,7 @@ class SignUpPage extends StatelessWidget {
           print("success registration");
           Get.offNamed(RouteHelper.getInitialRoute());
         } else {
-          Get.snackbar("Wrong", "Something went wrong");
+          Get.snackbar("Greșit", "Ceva nu a mers bine");
         }
       });
     }

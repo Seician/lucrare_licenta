@@ -34,7 +34,7 @@ class GoToSignInPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     BigText(
-                      text: "Sign in here! ",
+                      text: "Înregistrează-te aici! ",
                       color: Colors.white,
                     ),
                     Icon(
