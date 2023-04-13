@@ -212,7 +212,8 @@ class CartPage extends StatelessWidget {
                                                     showCustomSnackBar(
                                                         "Product review is not available from cart history",
                                                         isError: false,
-                                                        title: "Order more");
+                                                        title:
+                                                            "Comandă mai mult");
                                                   } else {
                                                     if (page == "recommended") {
                                                       Get.toNamed(RouteHelper
@@ -296,15 +297,15 @@ class CartPage extends StatelessWidget {
                                                       ),
                                                       /* BigText(text: cartController.getCarts[index].title,
                                                   color: AppColors.titleColor),*/
-                                                      TextWidget(
-                                                        text: "Spicy",
-                                                        color:
-                                                            AppColors.textColor,
-                                                      ),
+                                                      // TextWidget(
+                                                      //   text: "Spicy",
+                                                      //   color:
+                                                      //       AppColors.textColor,
+                                                      // ),
                                                       Row(
                                                         children: [
                                                           BigText(
-                                                              text: "\$ " +
+                                                              text: "RON " +
                                                                   cartController
                                                                       .getCarts[
                                                                           index]
@@ -413,7 +414,7 @@ class CartPage extends StatelessWidget {
                           );
                         }),
                       ))
-                  : NoDataScreen(text: "Your cart is empty!");
+                  : NoDataScreen(text: "Coșul tău de cumăpărături este gol!");
             })
           ],
         ),
@@ -443,7 +444,7 @@ class CartPage extends StatelessWidget {
                                     GetBuilder<CartController>(
                                       builder: (_) {
                                         return BigText(
-                                            text: "\$ " +
+                                            text: "RON " +
                                                 Get.find<CartController>()
                                                     .totalAmount
                                                     .toString(),

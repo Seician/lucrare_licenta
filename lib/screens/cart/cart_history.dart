@@ -90,7 +90,7 @@ many times a certain time is found
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            BigText(text: "Your cart history", color: Colors.white, size: 24),
+            BigText(text: "Istoric coș", color: Colors.white, size: 24),
             GestureDetector(
               onTap: () {
                 Get.toNamed(RouteHelper.getCartPage(0, "cart-history"));
@@ -197,8 +197,8 @@ many times a certain time is found
                                             text: "Total",
                                             color: AppColors.mainBlackColor),
                                         BigText(
-                                            text:
-                                                xy[index].toString() + " Items",
+                                            text: xy[index].toString() +
+                                                " Meniuri",
                                             color: AppColors.titleColor),
                                         Container(
                                           padding: EdgeInsets.symmetric(
@@ -252,7 +252,7 @@ many times a certain time is found
                                                     RouteHelper.getCartPage(
                                                         0, "cart-history"));
                                               },
-                                              child: Text("one more",
+                                              child: Text("Incă una",
                                                   style: robotoMedium.copyWith(
                                                     fontSize: Dimensions
                                                         .fontSizeExtraSmall,
@@ -271,7 +271,7 @@ many times a certain time is found
                         ],
                       ),
                     )))
-            : NoDataScreen(text: "No history ");
+            : NoDataScreen(text: "Fără istoric");
       })
     ]));
   }

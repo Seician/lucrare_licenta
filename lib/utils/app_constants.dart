@@ -2,6 +2,8 @@ class AppConstants {
   static const String APP_NAME = 'DBFood';
   static const int APP_VERSION = 1;
   //https://youtu.be/HCUZ91NVnaM learn here how to set up google map api key
+
+  
   static const String MAP_API_KEY = "AIzaSyDA0Pq-eTr8nAWUMtVDjHyCN6kiFia6uro";
   static const String STORE_PREFERENCE = 'Cart-list';
   //your base url

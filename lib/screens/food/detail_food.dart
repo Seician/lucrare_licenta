@@ -282,9 +282,8 @@ class DetailFood extends StatelessWidget {
               child: Container(
                 child: BigText(
                   size: 20,
-                  text: "\$" +
-                      (productItem.price / 100).toString() +
-                      " Add to cart",
+                  text:
+                      "\$" + (productItem.price / 100).toString() + " Adaugă ",
                   color: Colors.white,
                 ),
                 padding: EdgeInsets.all(Dimensions.padding20),

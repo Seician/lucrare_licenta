@@ -33,7 +33,7 @@ class _OrderScreenState extends State<OrderScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Orders"),
+        title: Text("Comenzi"),
         backgroundColor: AppColors.mainColor,
       ),
       body: _isLoggedIn
@@ -57,8 +57,8 @@ class _OrderScreenState extends State<OrderScreen>
                             fontSize: Dimensions.fontSizeSmall,
                             color: Theme.of(context).primaryColor),
                         tabs: [
-                          Tab(text: 'running'.tr),
-                          Tab(text: 'history'.tr),
+                          Tab(text: 'în proces'.tr),
+                          Tab(text: 'istoric'.tr),
                         ],
                       ),
                     ),

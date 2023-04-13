@@ -44,7 +44,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text("Payment"),
+          title: Text("Efectuare Plată"),
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () => _exitApp(context),
