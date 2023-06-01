@@ -25,12 +25,12 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           scrollBehavior: AppScrollBehavior(),
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Licență App',
           theme: ThemeData(
             primaryColor: AppColors.mainColor,
             fontFamily: "Lato",
           ),
-          initialRoute: RouteHelper.getInitialRoute(),
+          initialRoute: RouteHelper.getSplashRoute(),
           getPages: RouteHelper.routes,
           defaultTransition: Transition.topLevel,
         );
