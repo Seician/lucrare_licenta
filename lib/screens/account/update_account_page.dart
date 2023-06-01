@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/base/go_to_sign_in_page.dart';
@@ -52,114 +51,178 @@ class _UpdateAccountPageState extends State<UpdateAccountPage> {
       appBar: AppBar(
         title: Text("Update profile"),
         backgroundColor: Theme.of(context).primaryColor,
-        leading: IconButton(onPressed: ()=>Get.offNamed(RouteHelper.getAccountPage()),
+        leading: IconButton(
+          onPressed: () => Get.offNamed(RouteHelper.getAccountPage()),
           icon: Icon(Icons.arrow_back_ios),
         ),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
-        height:800,
+        height: 800,
         child: GetBuilder<UserController>(builder: (userController) {
-
-          print("my image is "+'${Get.find<SplashController>().configModel?.baseUrls?.customerImageUrl}/${userController.userInfoModel?.image}');
-          if(userController.userInfoModel != null && _phoneController.text.isEmpty) {
-            _firstNameController.text = userController.userInfoModel?.fName ?? '';
+          print("my image is " +
+              '${Get.find<SplashController>().configModel?.baseUrls?.customerImageUrl}/${userController.userInfoModel?.image}');
+          if (userController.userInfoModel != null &&
+              _phoneController.text.isEmpty) {
+            _firstNameController.text =
+                userController.userInfoModel?.fName ?? '';
             _phoneController.text = userController.userInfoModel?.phone ?? '';
             _emailController.text = userController.userInfoModel?.email ?? '';
           }
 
-          return _isLoggedIn ? userController.userInfoModel != null ? Column(
-           // print("Image "+('${Get.find<SplashController>().configModel?.baseUrls?.customerImageUrl}/${userController.userInfoModel?.image}').toString());
-           children: [
-             SizedBox(
-               height: 10,
-             ),
-             Center(child: Stack(children: [
-               ClipOval(child: userController.pickedFile != null ? GetPlatform.isWeb ? Image.network(
-                 userController.pickedFile!.path, width: 100, height: 100, fit: BoxFit.cover,
-               ) : Image.file(
-                 File(userController.pickedFile!.path), width: 100, height: 100, fit: BoxFit.cover,
-               ): CustomImage(
-                 image: '${Get.find<SplashController>().configModel?.baseUrls?.customerImageUrl}/${userController.userInfoModel?.image}',
-                 height: 100, width: 100, fit: BoxFit.cover, placeholder: '',
-               )),
-               Positioned(
-                 bottom: 0, right: 0, top: 0, left: 0,
-                 child: InkWell(
-                   onTap: () => userController.pickImage(),
-                   child: Container(
-                     decoration: BoxDecoration(
-                       color: Colors.black.withOpacity(0.3), shape: BoxShape.circle,
-                       border: Border.all(width: 1, color: Theme.of(context).primaryColor),
-                     ),
-                     child: Container(
-                       margin: EdgeInsets.all(25),
-                       decoration: BoxDecoration(
-                         border: Border.all(width: 2, color: Colors.white),
-                         shape: BoxShape.circle,
-                       ),
-                       child: Icon(Icons.camera_alt, color: Colors.white),
-                     ),
-                   ),
-                 ),
-               ),
-             ])),
-             Expanded(
-
-               child: Scrollbar(
-
-                 child: SingleChildScrollView(
-                   physics:BouncingScrollPhysics(),
-                   child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
-
-                         Text(
-                           'Your name',
-                           style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
-                         ),
-                         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                         AppTextField(hintText: "Name", textController: _firstNameController, icon: Icons.phone,),
-                         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-                         Text(
-                           'email',
-                           style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
-                         ),
-                         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                         AppTextField(hintText: "Email", textController: _emailController, icon: Icons.email,),
-
-                         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-
-                         Row(children: [
-                           Text(
-                             'phone',
-                             style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
-                           ),
-                           SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                           Text('(${'non_changeable'})', style: robotoRegular.copyWith(
-                             fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).errorColor,
-                           )),
-                         ]),
-                         SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-
-                         AppTextField(readOnly:true,hintText: "Phone", textController: _phoneController, icon: Icons.phone,),
-
-
-                     SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-
-                     !userController.isLoading ? CustomButton(
-                       onPressed: () => _updateProfile(userController),
-                       margin: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-                       buttonText: 'update',
-                     ) : Center(child: CircularProgressIndicator()),
-
-                   ]),
-                 ),
-               ),
-             ),
-           ],
-          ) : Center(child: CircularProgressIndicator()) : GoToSignInPage();
+          return _isLoggedIn
+              ? userController.userInfoModel != null
+                  ? Column(
+                      // print("Image "+('${Get.find<SplashController>().configModel?.baseUrls?.customerImageUrl}/${userController.userInfoModel?.image}').toString());
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Center(
+                            child: Stack(children: [
+                          ClipOval(
+                              child: userController.pickedFile != null
+                                  ? GetPlatform.isWeb
+                                      ? Image.network(
+                                          userController.pickedFile!.path,
+                                          width: 100,
+                                          height: 100,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Image.file(
+                                          File(userController.pickedFile!.path),
+                                          width: 100,
+                                          height: 100,
+                                          fit: BoxFit.cover,
+                                        )
+                                  : CustomImage(
+                                      image:
+                                          '${Get.find<SplashController>().configModel?.baseUrls?.customerImageUrl}/${userController.userInfoModel?.image}',
+                                      height: 100,
+                                      width: 100,
+                                      fit: BoxFit.cover,
+                                      placeholder: '',
+                                    )),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            top: 0,
+                            left: 0,
+                            child: InkWell(
+                              onTap: () => userController.pickImage(),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.3),
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      width: 1,
+                                      color: Theme.of(context).primaryColor),
+                                ),
+                                child: Container(
+                                  margin: EdgeInsets.all(25),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 2, color: Colors.white),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(Icons.camera_alt,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ])),
+                        Expanded(
+                          child: Scrollbar(
+                            child: SingleChildScrollView(
+                              physics: BouncingScrollPhysics(),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Numele Tău',
+                                      style: robotoRegular.copyWith(
+                                          fontSize: Dimensions.fontSizeSmall,
+                                          color:
+                                              Theme.of(context).disabledColor),
+                                    ),
+                                    SizedBox(
+                                        height: Dimensions
+                                            .PADDING_SIZE_EXTRA_SMALL),
+                                    AppTextField(
+                                      hintText: "Nume",
+                                      textController: _firstNameController,
+                                      icon: Icons.person_outlined,
+                                    ),
+                                    SizedBox(
+                                        height: Dimensions
+                                            .PADDING_SIZE_EXTRA_SMALL),
+                                    SizedBox(
+                                        height: Dimensions.PADDING_SIZE_LARGE),
+                                    Text(
+                                      'email',
+                                      style: robotoRegular.copyWith(
+                                          fontSize: Dimensions.fontSizeSmall,
+                                          color:
+                                              Theme.of(context).disabledColor),
+                                    ),
+                                    SizedBox(
+                                        height: Dimensions
+                                            .PADDING_SIZE_EXTRA_SMALL),
+                                    AppTextField(
+                                      hintText: "Email",
+                                      textController: _emailController,
+                                      icon: Icons.email,
+                                    ),
+                                    SizedBox(
+                                        height: Dimensions.PADDING_SIZE_LARGE),
+                                    Row(children: [
+                                      Text(
+                                        'phone',
+                                        style: robotoRegular.copyWith(
+                                            fontSize: Dimensions.fontSizeSmall,
+                                            color: Theme.of(context)
+                                                .disabledColor),
+                                      ),
+                                      SizedBox(
+                                          width: Dimensions
+                                              .PADDING_SIZE_EXTRA_SMALL),
+                                      Text('(${'non_changeable'})',
+                                          style: robotoRegular.copyWith(
+                                            fontSize:
+                                                Dimensions.fontSizeExtraSmall,
+                                            color: Theme.of(context).errorColor,
+                                          )),
+                                    ]),
+                                    SizedBox(
+                                        height: Dimensions
+                                            .PADDING_SIZE_EXTRA_SMALL),
+                                    AppTextField(
+                                      readOnly: true,
+                                      hintText: "Telefon",
+                                      textController: _phoneController,
+                                      icon: Icons.phone,
+                                    ),
+                                    SizedBox(
+                                        height: Dimensions.PADDING_SIZE_LARGE),
+                                    !userController.isLoading
+                                        ? CustomButton(
+                                            onPressed: () =>
+                                                _updateProfile(userController),
+                                            margin: EdgeInsets.all(
+                                                Dimensions.PADDING_SIZE_SMALL),
+                                            buttonText: 'Modifică',
+                                          )
+                                        : Center(
+                                            child: CircularProgressIndicator()),
+                                  ]),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : Center(child: CircularProgressIndicator())
+              : GoToSignInPage();
         }),
       ),
     );
@@ -170,26 +233,29 @@ class _UpdateAccountPageState extends State<UpdateAccountPage> {
     String _email = _emailController.text.trim();
     String _phoneNumber = _phoneController.text.trim();
     if (userController.userInfoModel?.fName == _firstName &&
-
-        userController.userInfoModel?.email == _emailController.text && userController.pickedFile == null) {
+        userController.userInfoModel?.email == _emailController.text &&
+        userController.pickedFile == null) {
       showCustomSnackBar('change_something_to_update');
-    }else if (_firstName.isEmpty) {
+    } else if (_firstName.isEmpty) {
       showCustomSnackBar('enter_your_first_name');
-    }else if (_email.isEmpty) {
+    } else if (_email.isEmpty) {
       showCustomSnackBar('enter_email_address');
-    }else if (!GetUtils.isEmail(_email)) {
+    } else if (!GetUtils.isEmail(_email)) {
       showCustomSnackBar('enter_a_valid_email_address');
-    }else if (_phoneNumber.isEmpty) {
+    } else if (_phoneNumber.isEmpty) {
       showCustomSnackBar('enter_phone_number');
-    }else if (_phoneNumber.length < 6) {
+    } else if (_phoneNumber.length < 6) {
       showCustomSnackBar('enter_a_valid_phone_number');
     } else {
-      UserInfoModel _updatedUser = UserInfoModel(fName: _firstName,  email: _email, phone: _phoneNumber);
-      ResponseModel _responseModel = await userController.updateUserInfo(_updatedUser, Get.find<AuthController>().getUserToken());
-      if(_responseModel.isSuccess) {
-        showCustomSnackBar('Profile updated successfully', isError: false, title: "Success");
+      UserInfoModel _updatedUser =
+          UserInfoModel(fName: _firstName, email: _email, phone: _phoneNumber);
+      ResponseModel _responseModel = await userController.updateUserInfo(
+          _updatedUser, Get.find<AuthController>().getUserToken());
+      if (_responseModel.isSuccess) {
+        showCustomSnackBar('Profile updated successfully',
+            isError: false, title: "Success");
         //Get.offNamed(RouteHelper.getAccountPage());
-      }else {
+      } else {
         showCustomSnackBar(_responseModel.message);
       }
     }
