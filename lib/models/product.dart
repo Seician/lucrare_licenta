@@ -71,8 +71,6 @@ class Product {
       "price": this.price,
       "isExist": this.description,
       'img': this.img,
-      //this part we need for accessing the product model
-      //so we will this part later
       'isFavourite': this.isFavourite
     };
   }

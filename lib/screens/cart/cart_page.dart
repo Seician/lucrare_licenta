@@ -491,7 +491,7 @@ class CartPage extends StatelessWidget {
                           next line 100 is a fake data
                            */
                                               orderAmount: 100.0,
-                                              orderNote: "Note about food",
+                                              orderNote: "Detalii despre mâncare",
                                               address: location.address,
                                               latitude: location.latitude,
                                               longitude: location.longitude,
@@ -521,7 +521,7 @@ class CartPage extends StatelessWidget {
                                   child: Container(
                                     child: BigText(
                                       size: 20,
-                                      text: "Check out",
+                                      text: "Plătește",
                                       color: Colors.white,
                                     ),
                                     padding:

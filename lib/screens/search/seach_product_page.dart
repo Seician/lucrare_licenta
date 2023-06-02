@@ -43,7 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         Expanded(
                             child: SearchField(
                           controller: _searchController,
-                          hint: 'search for food',
+                          hint: 'caută produsul dorit',
                           suffixIcon: !searchController.isSearchMode
                               ? Icons.filter_list
                               : Icons.search,
@@ -56,7 +56,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           onPressed: () => searchController.isSearchMode
                               ? Get.back()
                               : searchController.setSearchMode(true),
-                          buttonText: 'cancel',
+                          buttonText: 'ieșire',
                           transparent: true,
                           width: 80,
                         ),
@@ -73,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children: [Text("In search mode")]))),
+                                      children: [Text("Verifică disponibilitatea produsului")]))),
                         )
                       : SearchResultWidget(
                           searchText: _searchController.text.trim())),

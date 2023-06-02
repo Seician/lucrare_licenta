@@ -293,7 +293,7 @@ class _SearchResultWidgetState extends State<SearchResultWidget>
                                                   ],
                                                 ),
                                                 Container(
-                                                  height: 430,
+                                                  height: 330,
                                                   padding:
                                                       const EdgeInsets.only(
                                                           left: 20,
@@ -397,7 +397,7 @@ class _SearchResultWidgetState extends State<SearchResultWidget>
                                                       ),
                                                       BigText(
                                                           size: 22,
-                                                          text: "food_introduce"
+                                                          text: "Detalii Produs"
                                                               .tr,
                                                           color: AppColors
                                                               .titleColor),
@@ -668,7 +668,8 @@ class _SearchResultWidgetState extends State<SearchResultWidget>
                                                       //       AppColors.mainColor,
                                                       // ),
                                                       IconAndTextWidget(
-                                                        text: "Timp de preparare: 25min",
+                                                        text:
+                                                            "Timp de preparare: 25min",
                                                         color:
                                                             AppColors.textColor,
                                                         icon: Icons
