@@ -96,7 +96,9 @@ class _UpdateAccountPageState extends State<UpdateAccountPage> {
                                           fit: BoxFit.cover,
                                         )
                                   : CustomImage(
-                                      image: 'img/profile.png',
+                                      image:
+                                          '${Get.find<SplashController>().configModel?.baseUrls?.customerImageUrl}'
+                                          '/${(Get.find<UserController>().userInfoModel != null && Get.find<AuthController>().isLoggedIn()) ? Get.find<UserController>().userInfoModel?.image : ''}',
                                       height: 100,
                                       width: 100,
                                       fit: BoxFit.cover,
