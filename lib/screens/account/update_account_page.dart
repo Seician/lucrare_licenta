@@ -49,7 +49,7 @@ class _UpdateAccountPageState extends State<UpdateAccountPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).cardColor,
       appBar: AppBar(
-        title: Text("Update profile"),
+        title: Text("Actualizare profil"),
         backgroundColor: Theme.of(context).primaryColor,
         leading: IconButton(
           onPressed: () => Get.offNamed(RouteHelper.getAccountPage()),
@@ -161,7 +161,7 @@ class _UpdateAccountPageState extends State<UpdateAccountPage> {
                                     SizedBox(
                                         height: Dimensions.PADDING_SIZE_LARGE),
                                     Text(
-                                      'email',
+                                      'Email',
                                       style: robotoRegular.copyWith(
                                           fontSize: Dimensions.fontSizeSmall,
                                           color:
@@ -179,7 +179,7 @@ class _UpdateAccountPageState extends State<UpdateAccountPage> {
                                         height: Dimensions.PADDING_SIZE_LARGE),
                                     Row(children: [
                                       Text(
-                                        'phone',
+                                        'Telefon',
                                         style: robotoRegular.copyWith(
                                             fontSize: Dimensions.fontSizeSmall,
                                             color: Theme.of(context)
